@@ -54,7 +54,7 @@ export default function Projects() {
   }, []);
 
   return (
-    <section ref={sectionRef} id="projects" className="px-10 py-24">
+    <section ref={sectionRef} id="projects" className="px-6 sm:px-10 py-20 sm:py-24">
       <p
         ref={labelRef}
         className="font-mono text-[11px] tracking-[0.12em] uppercase text-muted mb-14 opacity-0"
@@ -73,7 +73,7 @@ export default function Projects() {
               href="#"
               className="group flex justify-between items-center py-7 text-ink cursor-none hover:pl-5 transition-[padding] duration-[400ms] ease-out"
             >
-              <div className="flex items-baseline gap-8">
+              <div className="flex items-baseline gap-3 sm:gap-8">
                 <span className="font-mono text-[11px] text-muted w-7 shrink-0">
                   {p.num}
                 </span>
@@ -82,7 +82,7 @@ export default function Projects() {
                 </span>
               </div>
 
-              <div className="flex items-center gap-10 text-right">
+              <div className="flex items-center gap-4 sm:gap-10 text-right">
                 <span className="font-mono text-[10px] tracking-[0.08em] uppercase text-muted hidden md:block">
                   {p.tags}
                 </span>

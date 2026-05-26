@@ -24,7 +24,7 @@ export default function Navbar() {
   return (
     <header
       ref={headerRef}
-      className="fixed top-0 left-0 right-0 z-50 flex justify-between items-start px-10 py-7 opacity-0"
+      className="fixed top-0 left-0 right-0 z-50 flex justify-between items-start px-6 sm:px-10 py-6 sm:py-7 opacity-0"
     >
       <Link
         href="/"

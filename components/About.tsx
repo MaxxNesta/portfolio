@@ -46,7 +46,7 @@ export default function About() {
   }, []);
 
   return (
-    <section ref={sectionRef} id="info" className="px-10 py-24">
+    <section ref={sectionRef} id="info" className="px-6 sm:px-10 py-20 sm:py-24">
       <div className="grid grid-cols-1 md:grid-cols-[1fr_2fr] gap-16 md:gap-24 items-start about-animate opacity-0">
         <div className="font-mono text-[11px] tracking-[0.12em] uppercase text-muted pt-1">
           Info

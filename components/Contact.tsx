@@ -34,7 +34,7 @@ export default function Contact() {
     <section
       ref={sectionRef}
       id="contact"
-      className="px-10 py-28 md:py-36 border-t border-line"
+      className="px-6 sm:px-10 py-24 sm:py-28 md:py-36 border-t border-line"
     >
       <p className="contact-animate font-mono text-[11px] tracking-[0.12em] uppercase text-muted mb-10 opacity-0">
         Get in touch

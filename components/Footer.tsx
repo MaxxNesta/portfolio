@@ -6,7 +6,7 @@ const footerLinks = [
 
 export default function Footer() {
   return (
-    <footer className="px-10 py-10 border-t border-line flex flex-wrap justify-between items-center gap-5">
+    <footer className="px-6 sm:px-10 py-8 sm:py-10 border-t border-line flex flex-wrap justify-between items-center gap-5">
       <p className="font-mono text-[11px] text-muted">© 2025 Ju</p>
       <div className="flex gap-6">
         {footerLinks.map(({ label, href }) => (
