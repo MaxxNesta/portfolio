@@ -1,8 +1,7 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
-import { gsap } from "gsap";
 
 const navLinks = [
   { href: "#projects", label: "Projects" },
@@ -11,16 +10,7 @@ const navLinks = [
 ];
 
 export default function Navbar() {
-  const headerRef = useRef<HTMLElement>(null);
   const [open, setOpen] = useState(false);
-
-  useEffect(() => {
-    gsap.fromTo(
-      headerRef.current,
-      { opacity: 0, y: -12 },
-      { opacity: 1, y: 0, duration: 0.9, ease: "power3.out", delay: 0.2 }
-    );
-  }, []);
 
   // Lock body scroll when panel is open
   useEffect(() => {
@@ -31,8 +21,7 @@ export default function Navbar() {
   return (
     <>
       <header
-        ref={headerRef}
-        className="fixed top-0 left-0 right-0 z-[200] flex justify-between items-center px-6 sm:px-10 py-6 sm:py-7 bg-bg opacity-0"
+        className="fixed top-0 left-0 right-0 z-[200] flex justify-between items-center px-6 sm:px-10 py-6 sm:py-7 bg-bg"
       >
         <Link
           href="/"
