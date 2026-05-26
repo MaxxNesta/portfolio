@@ -31,8 +31,8 @@ export default function Hero() {
       const intro = gsap.timeline({ defaults: { ease: "power3.out" } });
       intro
         .fromTo(labelRef.current,
-          { opacity: 0, y: 14 },
-          { opacity: 1, y: 0, duration: 0.9, delay: 0.5 })
+          { opacity: 0 },
+          { opacity: 1, duration: 1.0, delay: 0.5 })
         .fromTo(jSvgRef.current,
           { opacity: 0, y: 40 },
           { opacity: 1, y: 0, duration: 1.2 }, "-=0.55")
