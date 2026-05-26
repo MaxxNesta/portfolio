@@ -15,6 +15,21 @@ export default function SmoothScroll({
   const lenisRef = useRef<Lenis | null>(null);
 
   useEffect(() => {
+    const onLoad = () => ScrollTrigger.refresh();
+    const scheduleRefresh = () => {
+      if (document.readyState === "complete") {
+        ScrollTrigger.refresh();
+      } else {
+        window.addEventListener("load", onLoad, { once: true });
+      }
+    };
+
+    // Touch devices use native scroll — Lenis causes shaking on mobile
+    if (window.matchMedia("(pointer: coarse)").matches) {
+      scheduleRefresh();
+      return () => window.removeEventListener("load", onLoad);
+    }
+
     const lenis = new Lenis({
       duration: 1.2,
       easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
@@ -22,24 +37,12 @@ export default function SmoothScroll({
     });
     lenisRef.current = lenis;
 
-    // Keep ScrollTrigger in sync with Lenis scroll position
     lenis.on("scroll", ScrollTrigger.update);
-
-    // Drive Lenis from GSAP's ticker so both share the same RAF loop
     const rafCallback = (time: number) => lenis.raf(time * 1000);
     gsap.ticker.add(rafCallback);
     gsap.ticker.lagSmoothing(0);
 
-    // Fonts and images shift layout after the first paint; refresh
-    // ScrollTrigger once the full page (including assets) has loaded
-    // so pin spacers and trigger positions are calculated correctly.
-    const onLoad = () => ScrollTrigger.refresh();
-    if (document.readyState === "complete") {
-      // Already loaded (e.g. client-side navigation)
-      ScrollTrigger.refresh();
-    } else {
-      window.addEventListener("load", onLoad, { once: true });
-    }
+    scheduleRefresh();
 
     return () => {
       window.removeEventListener("load", onLoad);

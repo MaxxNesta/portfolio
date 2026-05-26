@@ -41,28 +41,40 @@ export default function Hero() {
           { opacity: 0 },
           { opacity: 1, duration: 0.6 }, "-=0.3");
 
-      // ── Scroll-pinned animation ──────────────────────────────────────
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: "top top",
-          end: "+=170%",
-          pin: true,
-          pinType: "transform",
-          scrub: 1.8,
-          anticipatePin: 1,
-        },
+      // ── Scroll-pinned animation (desktop only) ──────────────────────
+      const mm = gsap.matchMedia();
+      mm.add("(min-width: 768px)", () => {
+        const tl = gsap.timeline({
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "top top",
+            end: "+=170%",
+            pin: true,
+            pinType: "transform",
+            scrub: 1.8,
+            anticipatePin: 1,
+          },
+        });
+
+        tl.to(scrollHintRef.current, { opacity: 0, ease: "none", duration: 0.1 }, 0);
+
+        // J — stem grows downward, hook follows
+        tl.to(jStemRef.current, { attr: { y2: 538 }, ease: "none" }, 0);
+        tl.to(jHookRef.current, { y: 538, ease: "none" }, 0);
+
+        // U — arms grow upward from fixed bottom curve
+        tl.to(uLeftRef.current,  { attr: { y1: 80 }, ease: "none" }, 0);
+        tl.to(uRightRef.current, { attr: { y1: 80 }, ease: "none" }, 0);
       });
 
-      tl.to(scrollHintRef.current, { opacity: 0, ease: "none", duration: 0.1 }, 0);
-
-      // J — stem grows downward, hook follows
-      tl.to(jStemRef.current, { attr: { y2: 538 }, ease: "none" }, 0);
-      tl.to(jHookRef.current, { y: 538, ease: "none" }, 0);
-
-      // U — arms grow upward from fixed bottom curve
-      tl.to(uLeftRef.current,  { attr: { y1: 80 }, ease: "none" }, 0);
-      tl.to(uRightRef.current, { attr: { y1: 80 }, ease: "none" }, 0);
+      // On mobile: skip pin, show letters fully drawn and hide scroll hint
+      mm.add("(max-width: 767px)", () => {
+        gsap.set(jStemRef.current,  { attr: { y2: 538 } });
+        gsap.set(jHookRef.current,  { y: 538 });
+        gsap.set(uLeftRef.current,  { attr: { y1: 80 } });
+        gsap.set(uRightRef.current, { attr: { y1: 80 } });
+        gsap.set(scrollHintRef.current, { opacity: 0 });
+      });
     }, sectionRef);
 
     return () => ctx.revert();

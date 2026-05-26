@@ -14,22 +14,26 @@ export default function Gallery() {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      const section = sectionRef.current!;
-      const track   = trackRef.current!;
+      const mm = gsap.matchMedia();
 
-      gsap.to(track, {
-        x: () => -(track.scrollWidth - section.offsetWidth),
-        ease: "none",
-        scrollTrigger: {
-          trigger: section,
-          start: "top top",
-          end: () => `+=${track.scrollWidth - section.offsetWidth}`,
-          pin: true,
-          pinType: "transform",
-          scrub: 1,
-          anticipatePin: 1,
-          invalidateOnRefresh: true,
-        },
+      mm.add("(min-width: 768px)", () => {
+        const section = sectionRef.current!;
+        const track   = trackRef.current!;
+
+        gsap.to(track, {
+          x: () => -(track.scrollWidth - section.offsetWidth),
+          ease: "none",
+          scrollTrigger: {
+            trigger: section,
+            start: "top top",
+            end: () => `+=${track.scrollWidth - section.offsetWidth}`,
+            pin: true,
+            pinType: "transform",
+            scrub: 1,
+            anticipatePin: 1,
+            invalidateOnRefresh: true,
+          },
+        });
       });
     });
 
@@ -37,7 +41,12 @@ export default function Gallery() {
   }, []);
 
   return (
-    <section ref={sectionRef} id="gallery" className="h-screen overflow-hidden">
+    <section
+      ref={sectionRef}
+      id="gallery"
+      className="h-screen overflow-x-auto overflow-y-hidden md:overflow-hidden"
+      style={{ WebkitOverflowScrolling: "touch" } as React.CSSProperties}
+    >
       <div
         ref={trackRef}
         className="flex items-center gap-3 sm:gap-4 h-full px-6 sm:px-10"
