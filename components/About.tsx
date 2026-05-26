@@ -8,16 +8,16 @@ gsap.registerPlugin(ScrollTrigger);
 
 const skills = [
   {
-    title: "Design",
-    items: ["Brand identity", "UI / UX design", "Motion design", "Illustration", "3D design"],
+    title: "Styling",
+    items: ["Editorial styling", "Personal styling", "Wardrobe curation", "Fashion direction", "Color theory"],
   },
   {
-    title: "Development",
-    items: ["HTML / CSS / JS", "React / Next.js", "TypeScript", "Node.js", "Three.js"],
+    title: "Artworks",
+    items: ["Fashion illustration", "Collage", "Mixed media", "Print design", "Art direction"],
   },
   {
     title: "Tools",
-    items: ["Figma", "Adobe Creative", "Blender", "After Effects", "VS Code"],
+    items: ["Adobe Illustrator", "Procreate", "Lightroom", "Canva", "Physical media"],
   },
 ];
 
@@ -52,10 +52,10 @@ export default function About() {
           Info
         </div>
         <p className="font-serif font-light text-[clamp(20px,2.4vw,32px)] leading-[1.5] tracking-[-0.01em]">
-          Based in Myanmar — designing and building at the intersection of{" "}
-          <em>visual craft</em> and <em>technical depth</em>. From reimagining
-          brand identities to building immersive web experiences, the work spans
-          motion, interface, and beyond.
+          Based in Myanmar — styling and creating at the intersection of{" "}
+          <em>fashion</em> and <em>art</em>. From curating editorial looks to
+          crafting visual artworks, the work spans garments, texture, and
+          personal expression.
         </p>
       </div>
 

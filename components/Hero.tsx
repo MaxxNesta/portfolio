@@ -36,23 +36,21 @@ export default function Hero() {
           ref={labelRef}
           className="font-mono text-[11px] tracking-[0.12em] uppercase text-muted mb-14 opacity-0"
         >
-          Visual Designer &amp; Developer
+          Stylist &amp; Visual Artist
         </p>
         <h1
           ref={titleRef}
           className="font-serif font-light leading-[0.9] tracking-[-0.02em] text-[clamp(72px,11vw,170px)] opacity-0"
         >
-          Maxx
-          <br />
-          <em>Nesta</em>
+          <em>Ju</em>
         </h1>
       </div>
 
       <div ref={bottomRef} className="flex justify-between items-end opacity-0 mt-16">
         <p className="font-mono text-[11px] tracking-[0.1em] uppercase text-muted max-w-[200px] leading-[1.8]">
-          Crafting digital experiences
+          Fashion styling and artworks
           <br />
-          from interfaces to identities
+          from editorial to everyday
         </p>
         <div
           className="flex items-center gap-3 font-mono text-[11px] tracking-wider uppercase text-muted"

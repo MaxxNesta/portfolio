@@ -7,12 +7,12 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 gsap.registerPlugin(ScrollTrigger);
 
 const projects = [
-  { num: "01", name: "Cipher", tags: "Brand identity & Motion", year: "2025" },
-  { num: "02", name: "Meridian", tags: "Web design & UI system", year: "2025" },
-  { num: "03", name: "Volta", tags: "App design & Visual identity", year: "2024" },
-  { num: "04", name: "Solstice", tags: "Illustration & Poster design", year: "2024" },
-  { num: "05", name: "Relic", tags: "3D Design & Infographics", year: "2024" },
-  { num: "06", name: "Drift", tags: "Employer branding & Icons", year: "2023" },
+  { num: "01", name: "Bloom", tags: "Editorial styling & Lookbook", year: "2025" },
+  { num: "02", name: "Dusk", tags: "Wardrobe curation & Fashion story", year: "2025" },
+  { num: "03", name: "Thread", tags: "Fashion illustration & Prints", year: "2024" },
+  { num: "04", name: "Reverie", tags: "Mixed media artwork & Collage", year: "2024" },
+  { num: "05", name: "Petal", tags: "Art direction & Photography", year: "2024" },
+  { num: "06", name: "Veil", tags: "Textile & Pattern design", year: "2023" },
 ];
 
 export default function Projects() {
@@ -59,7 +59,7 @@ export default function Projects() {
         ref={labelRef}
         className="font-mono text-[11px] tracking-[0.12em] uppercase text-muted mb-14 opacity-0"
       >
-        Project overview
+        Selected works
       </p>
 
       <ul aria-label="Projects">

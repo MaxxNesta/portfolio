@@ -30,7 +30,7 @@ export default function Navbar() {
         href="/"
         className="font-mono text-[11px] tracking-widest uppercase text-ink hover:opacity-60 transition-opacity duration-200 cursor-none"
       >
-        Maxx Nesta
+        Ju
       </Link>
 
       <nav className="flex gap-5" aria-label="Main navigation">

@@ -21,9 +21,9 @@ const spaceMono = Space_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Maxx Nesta — Portfolio",
+  title: "Ju — Portfolio",
   description:
-    "From crafting digital experiences to building immersive interfaces – explore projects from the mind of developer & designer Maxx Nesta.",
+    "Explore the works of Ju, a stylist and visual artist crafting fashion stories through editorial styling, artworks, and curated aesthetics.",
 };
 
 export default function RootLayout({
