@@ -79,7 +79,7 @@ export default function Hero() {
       className="relative min-h-screen flex flex-col items-center px-6 sm:px-10 pt-24 sm:pt-32 md:pt-36 lg:pt-40 pb-12"
     >
       <p
-        className="font-mono text-[10px] sm:text-[11px] tracking-[0.15em] uppercase text-ink/50 mb-8 md:mb-12 lg:mb-14"
+        className="font-mono text-[10px] sm:text-[11px] tracking-[0.15em] uppercase text-muted mb-8 md:mb-12 lg:mb-14"
       >
         Stylist &amp; Visual Artist
       </p>
