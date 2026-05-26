@@ -67,13 +67,15 @@ export default function Hero() {
         tl.to(uRightRef.current, { attr: { y1: 80 }, ease: "none" }, 0);
       });
 
-      // On mobile: skip pin, show letters fully drawn and hide scroll hint
+      // On mobile: animate letters on load (no scroll pin)
       mm.add("(max-width: 767px)", () => {
-        gsap.set(jStemRef.current,  { attr: { y2: 538 } });
-        gsap.set(jHookRef.current,  { y: 538 });
-        gsap.set(uLeftRef.current,  { attr: { y1: 80 } });
-        gsap.set(uRightRef.current, { attr: { y1: 80 } });
         gsap.set(scrollHintRef.current, { opacity: 0 });
+        // Starts after the intro fade-in completes (~1.4 s)
+        const delay = 1.5;
+        gsap.to(jStemRef.current,  { attr: { y2: 538 }, duration: 1.4, ease: "power2.inOut", delay });
+        gsap.to(jHookRef.current,  { y: 538,            duration: 1.4, ease: "power2.inOut", delay });
+        gsap.to(uLeftRef.current,  { attr: { y1: 80 },  duration: 1.4, ease: "power2.inOut", delay });
+        gsap.to(uRightRef.current, { attr: { y1: 80 },  duration: 1.4, ease: "power2.inOut", delay });
       });
     }, sectionRef);
 
