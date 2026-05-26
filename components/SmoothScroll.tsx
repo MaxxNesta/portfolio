@@ -22,17 +22,28 @@ export default function SmoothScroll({
     });
     lenisRef.current = lenis;
 
-    const onScroll = () => ScrollTrigger.update();
-    lenis.on("scroll", onScroll);
+    // Keep ScrollTrigger in sync with Lenis scroll position
+    lenis.on("scroll", ScrollTrigger.update);
 
-    const rafCallback = (time: number) => {
-      lenis.raf(time * 1000);
-    };
+    // Drive Lenis from GSAP's ticker so both share the same RAF loop
+    const rafCallback = (time: number) => lenis.raf(time * 1000);
     gsap.ticker.add(rafCallback);
     gsap.ticker.lagSmoothing(0);
 
+    // Fonts and images shift layout after the first paint; refresh
+    // ScrollTrigger once the full page (including assets) has loaded
+    // so pin spacers and trigger positions are calculated correctly.
+    const onLoad = () => ScrollTrigger.refresh();
+    if (document.readyState === "complete") {
+      // Already loaded (e.g. client-side navigation)
+      ScrollTrigger.refresh();
+    } else {
+      window.addEventListener("load", onLoad, { once: true });
+    }
+
     return () => {
-      lenis.off("scroll", onScroll);
+      window.removeEventListener("load", onLoad);
+      lenis.off("scroll", ScrollTrigger.update);
       gsap.ticker.remove(rafCallback);
       lenis.destroy();
     };

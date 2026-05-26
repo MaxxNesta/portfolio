@@ -25,6 +25,7 @@ export default function Gallery() {
           start: "top top",
           end: () => `+=${track.scrollWidth - section.offsetWidth}`,
           pin: true,
+          pinType: "transform",
           scrub: 1,
           anticipatePin: 1,
           invalidateOnRefresh: true,

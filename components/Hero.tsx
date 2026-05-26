@@ -48,6 +48,7 @@ export default function Hero() {
           start: "top top",
           end: "+=170%",
           pin: true,
+          pinType: "transform",
           scrub: 1.8,
           anticipatePin: 1,
         },
