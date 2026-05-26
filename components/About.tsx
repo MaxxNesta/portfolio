@@ -52,7 +52,7 @@ export default function About() {
           Info
         </div>
         <p className="font-serif font-light text-[clamp(20px,2.4vw,32px)] leading-[1.5] tracking-[-0.01em]">
-          Based in Myanmar — styling and creating at the intersection of{" "}
+          Based in Bangkok — styling and creating at the intersection of{" "}
           <em>fashion</em> and <em>art</em>. From curating editorial looks to
           crafting visual artworks, the work spans garments, texture, and
           personal expression.
