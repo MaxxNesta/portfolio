@@ -8,7 +8,6 @@ gsap.registerPlugin(ScrollTrigger);
 
 export default function Hero() {
   const sectionRef  = useRef<HTMLElement>(null);
-  const labelRef    = useRef<HTMLParagraphElement>(null);
   const jSvgRef     = useRef<SVGSVGElement>(null);
   const uSvgRef     = useRef<SVGSVGElement>(null);
   const jStemRef    = useRef<SVGLineElement>(null);
@@ -19,6 +18,7 @@ export default function Hero() {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
+      // no scope arg — avoids ctx.revert() touching non-animated siblings
       const isMobile = window.matchMedia("(max-width: 767px)").matches;
 
       // ── Initial SVG states (short letters) ─────────────────────────
@@ -30,15 +30,12 @@ export default function Hero() {
       // ── Entry animation ─────────────────────────────────────────────
       const intro = gsap.timeline({ defaults: { ease: "power3.out" } });
       intro
-        .fromTo(labelRef.current,
-          { opacity: 0 },
-          { opacity: 1, duration: 1.0, delay: 0.5 })
         .fromTo(jSvgRef.current,
           { opacity: 0, y: 40 },
-          { opacity: 1, y: 0, duration: 1.2 }, "-=0.55")
+          { opacity: 1, y: 0, duration: 1.2 })
         .fromTo(uSvgRef.current,
           { opacity: 0, y: 40 },
-          { opacity: 1, y: 0, duration: 1.2 }, "-=1.1");
+          { opacity: 1, y: 0, duration: 1.2 }, "-=1.0");
 
       if (isMobile) {
         // Mobile: letters animate as part of the intro, no scroll pin
@@ -71,7 +68,7 @@ export default function Hero() {
         tl.to(uLeftRef.current,  { attr: { y1: 80 }, ease: "none" }, 0);
         tl.to(uRightRef.current, { attr: { y1: 80 }, ease: "none" }, 0);
       }
-    }, sectionRef);
+    });
 
     return () => ctx.revert();
   }, []);
@@ -82,8 +79,7 @@ export default function Hero() {
       className="relative min-h-screen flex flex-col items-center px-6 sm:px-10 pt-24 sm:pt-32 md:pt-36 lg:pt-40 pb-12"
     >
       <p
-        ref={labelRef}
-        className="font-mono text-[10px] sm:text-[11px] tracking-[0.15em] uppercase text-muted mb-8 md:mb-12 lg:mb-14 opacity-0"
+        className="font-mono text-[10px] sm:text-[11px] tracking-[0.15em] uppercase text-ink/50 mb-8 md:mb-12 lg:mb-14"
       >
         Stylist &amp; Visual Artist
       </p>
