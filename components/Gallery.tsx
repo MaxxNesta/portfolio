@@ -49,9 +49,12 @@ export default function Gallery() {
     >
       <div
         ref={trackRef}
-        className="flex items-center gap-3 sm:gap-4 h-full pl-16 sm:pl-28 pr-6 sm:pr-10"
+        className="flex items-center gap-3 sm:gap-4 h-full pr-6 sm:pr-10"
         style={{ width: "max-content" }}
       >
+        {/* Left spacer — pushes first card away from screen edge */}
+        <div className="flex-none w-10 sm:w-20 md:w-28" aria-hidden="true" />
+
         {artworks.map((work) => (
           <Link
             key={work.id}
