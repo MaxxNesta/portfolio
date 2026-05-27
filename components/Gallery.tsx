@@ -49,7 +49,7 @@ export default function Gallery() {
     >
       <div
         ref={trackRef}
-        className="flex items-center gap-3 sm:gap-4 h-full pr-6 sm:pr-10"
+        className="flex items-center gap-10 sm:gap-20 md:gap-28 h-full pr-6 sm:pr-10"
         style={{ width: "max-content" }}
       >
         {/* Left spacer — pushes first card away from screen edge */}
