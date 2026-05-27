@@ -7,13 +7,14 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 gsap.registerPlugin(ScrollTrigger);
 
 export default function Hero() {
-  const sectionRef  = useRef<HTMLElement>(null);
-  const jSvgRef     = useRef<SVGSVGElement>(null);
-  const uSvgRef     = useRef<SVGSVGElement>(null);
-  const jStemRef    = useRef<SVGLineElement>(null);
-  const jHookRef    = useRef<SVGGElement>(null);
-  const uLeftRef    = useRef<SVGLineElement>(null);
-  const uRightRef   = useRef<SVGLineElement>(null);
+  const sectionRef    = useRef<HTMLElement>(null);
+  const jSvgRef       = useRef<SVGSVGElement>(null);
+  const uSvgRef       = useRef<SVGSVGElement>(null);
+  const jBarRef       = useRef<SVGRectElement>(null);
+  const jStemRef      = useRef<SVGLineElement>(null);
+  const jHookRef      = useRef<SVGGElement>(null);
+  const uLeftRef      = useRef<SVGLineElement>(null);
+  const uRightRef     = useRef<SVGLineElement>(null);
   const scrollHintRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -38,12 +39,12 @@ export default function Hero() {
           { opacity: 1, duration: 0.6 }, "-=0.3");
 
       // ── Scroll-pinned animation (all screen sizes) ──────────────────
-      // Lenis is disabled on touch so native scroll drives this cleanly
+      // end "+=300%" = 3× viewport height of scroll — full long desktop pin
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: sectionRef.current,
           start: "top top",
-          end: "+=170%",
+          end: "+=300%",
           pin: true,
           pinType: "transform",
           scrub: 1.8,
@@ -51,9 +52,15 @@ export default function Hero() {
           invalidateOnRefresh: true,
         },
       });
+
       tl.to(scrollHintRef.current, { opacity: 0, ease: "none", duration: 0.1 }, 0);
+
+      // J — stem grows down, hook follows, crossbar widens from centre
       tl.to(jStemRef.current, { attr: { y2: 538 }, ease: "none" }, 0);
       tl.to(jHookRef.current, { y: 538,            ease: "none" }, 0);
+      tl.to(jBarRef.current,  { attr: { x: 14, width: 172 }, ease: "none" }, 0);
+
+      // U — arms grow upward from fixed bottom curve
       tl.to(uLeftRef.current,  { attr: { y1: 80 }, ease: "none" }, 0);
       tl.to(uRightRef.current, { attr: { y1: 80 }, ease: "none" }, 0);
     });
@@ -66,9 +73,7 @@ export default function Hero() {
       ref={sectionRef}
       className="relative min-h-screen flex flex-col items-center px-6 sm:px-10 pt-24 sm:pt-32 md:pt-36 lg:pt-40 pb-12"
     >
-      <p
-        className="font-mono text-[10px] sm:text-[11px] tracking-[0.15em] uppercase text-muted mb-8 md:mb-12 lg:mb-14"
-      >
+      <p className="font-mono text-[10px] sm:text-[11px] tracking-[0.15em] uppercase text-muted mb-8 md:mb-12 lg:mb-14">
         Stylist &amp; Visual Artist
       </p>
 
@@ -82,8 +87,8 @@ export default function Hero() {
           style={{ overflow: "visible", color: "#1A1A1A" }}
           aria-hidden="true"
         >
-          {/* Crossbar */}
-          <rect x="34" y="54" width="132" height="20" fill="currentColor" />
+          {/* Crossbar — x/width animated to expand from centre */}
+          <rect ref={jBarRef} x="34" y="54" width="132" height="20" fill="currentColor" />
 
           {/* Stem — y2 animated 238 → 538 */}
           <line
@@ -124,7 +129,7 @@ export default function Hero() {
             fill="none"
           />
 
-          {/* Left arm — y1 animated 450 → 80, y2 stays at 450 */}
+          {/* Left arm — y1 animated 450 → 80 */}
           <line
             ref={uLeftRef}
             x1="36" y1="450"
@@ -134,7 +139,7 @@ export default function Hero() {
             strokeLinecap="round"
           />
 
-          {/* Right arm — y1 animated 450 → 80, y2 stays at 450 */}
+          {/* Right arm — y1 animated 450 → 80 */}
           <line
             ref={uRightRef}
             x1="204" y1="450"
