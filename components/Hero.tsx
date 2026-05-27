@@ -7,21 +7,37 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 gsap.registerPlugin(ScrollTrigger);
 
 export default function Hero() {
-  const sectionRef    = useRef<HTMLElement>(null);
-  const jSvgRef       = useRef<SVGSVGElement>(null);
-  const uSvgRef       = useRef<SVGSVGElement>(null);
-  const jBarRef       = useRef<SVGRectElement>(null);
-  const jStemRef      = useRef<SVGLineElement>(null);
-  const jHookRef      = useRef<SVGGElement>(null);
-  const uLeftRef      = useRef<SVGLineElement>(null);
-  const uRightRef     = useRef<SVGLineElement>(null);
-  const scrollHintRef = useRef<HTMLDivElement>(null);
+  const sectionRef      = useRef<HTMLElement>(null);
+  const jSvgRef         = useRef<SVGSVGElement>(null);
+  const uSvgRef         = useRef<SVGSVGElement>(null);
+  const jBarRef         = useRef<SVGRectElement>(null);
+  const jStemRef        = useRef<SVGLineElement>(null);
+  const jHookPathRef    = useRef<SVGPathElement>(null);
+  const jHookRef        = useRef<SVGGElement>(null);
+  const uCurveRef       = useRef<SVGPathElement>(null);
+  const uLeftRef        = useRef<SVGLineElement>(null);
+  const uRightRef       = useRef<SVGLineElement>(null);
+  const scrollHintRef   = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
+      const isMobile = window.matchMedia("(max-width: 767px)").matches;
+      const sw   = isMobile ? 11 : 20;   // stroke width
+      const barH = isMobile ? 11 : 20;   // crossbar rect height
+      const barY = 64 - barH / 2;        // keep crossbar centred at y=64
+      const stemY1 = barY + barH;        // stem starts at bottom of bar
+
+      // ── Responsive stroke widths ────────────────────────────────────
+      gsap.set(jBarRef.current,      { attr: { height: barH, y: barY } });
+      gsap.set(jStemRef.current,     { attr: { strokeWidth: sw, y1: stemY1 } });
+      gsap.set(jHookPathRef.current, { attr: { strokeWidth: sw } });
+      gsap.set(uCurveRef.current,    { attr: { strokeWidth: sw } });
+      gsap.set(uLeftRef.current,     { attr: { strokeWidth: sw } });
+      gsap.set(uRightRef.current,    { attr: { strokeWidth: sw } });
+
       // ── Initial SVG states (short letters) ─────────────────────────
-      gsap.set(jStemRef.current,  { attr: { y2: 238 } });
-      gsap.set(jHookRef.current,  { y: 238 });
+      gsap.set(jStemRef.current,  { attr: { y2: stemY1 + 164 } }); // 164 = original short length
+      gsap.set(jHookRef.current,  { y: stemY1 + 164 });
       gsap.set(uLeftRef.current,  { attr: { y1: 450 } });
       gsap.set(uRightRef.current, { attr: { y1: 450 } });
 
@@ -39,7 +55,6 @@ export default function Hero() {
           { opacity: 1, duration: 0.6 }, "-=0.3");
 
       // ── Scroll-pinned animation (all screen sizes) ──────────────────
-      // end "+=300%" = 3× viewport height of scroll — full long desktop pin
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: sectionRef.current,
@@ -55,12 +70,15 @@ export default function Hero() {
 
       tl.to(scrollHintRef.current, { opacity: 0, ease: "none", duration: 0.1 }, 0);
 
-      // J — stem grows down, hook follows, crossbar widens from centre
+      // J — stem grows, hook follows, crossbar widens
       tl.to(jStemRef.current, { attr: { y2: 538 }, ease: "none" }, 0);
       tl.to(jHookRef.current, { y: 538,            ease: "none" }, 0);
-      tl.to(jBarRef.current,  { attr: { x: 14, width: 172 }, ease: "none" }, 0);
+      tl.to(jBarRef.current,  {
+        attr: { x: isMobile ? 20 : 14, width: isMobile ? 160 : 172 },
+        ease: "none",
+      }, 0);
 
-      // U — arms grow upward from fixed bottom curve
+      // U — arms grow upward
       tl.to(uLeftRef.current,  { attr: { y1: 80 }, ease: "none" }, 0);
       tl.to(uRightRef.current, { attr: { y1: 80 }, ease: "none" }, 0);
     });
@@ -73,7 +91,7 @@ export default function Hero() {
       ref={sectionRef}
       className="relative h-screen flex flex-col items-center px-6 sm:px-10 pb-8"
     >
-      <div className="flex-1 flex items-center justify-center gap-8 sm:gap-16 md:gap-24 lg:gap-32 min-h-0 w-full">
+      <div className="flex-1 flex items-center justify-center gap-6 sm:gap-16 md:gap-24 lg:gap-32 min-h-0 w-full">
 
         {/* ── J ───────────────────────────────────────────────────────── */}
         <svg
@@ -83,10 +101,10 @@ export default function Hero() {
           style={{ overflow: "visible", color: "#1A1A1A" }}
           aria-hidden="true"
         >
-          {/* Crossbar — x/width animated to expand from centre */}
+          {/* Crossbar — height & x/width animated */}
           <rect ref={jBarRef} x="34" y="54" width="132" height="20" fill="currentColor" />
 
-          {/* Stem — y2 animated 238 → 538 */}
+          {/* Stem */}
           <line
             ref={jStemRef}
             x1="100" y1="74"
@@ -96,9 +114,10 @@ export default function Hero() {
             strokeLinecap="square"
           />
 
-          {/* Hook — translateY animated 238 → 538 */}
+          {/* Hook */}
           <g ref={jHookRef}>
             <path
+              ref={jHookPathRef}
               d="M 100 0 L 100 22 C 100 82 62 96 38 84 C 16 72 14 46 30 38"
               stroke="currentColor"
               strokeWidth="20"
@@ -116,8 +135,9 @@ export default function Hero() {
           style={{ overflow: "visible", color: "#1A1A1A" }}
           aria-hidden="true"
         >
-          {/* Bottom curve — fixed */}
+          {/* Bottom curve */}
           <path
+            ref={uCurveRef}
             d="M 36 450 Q 36 536 120 536 Q 204 536 204 450"
             stroke="currentColor"
             strokeWidth="20"
@@ -125,7 +145,7 @@ export default function Hero() {
             fill="none"
           />
 
-          {/* Left arm — y1 animated 450 → 80 */}
+          {/* Left arm */}
           <line
             ref={uLeftRef}
             x1="36" y1="450"
@@ -135,7 +155,7 @@ export default function Hero() {
             strokeLinecap="round"
           />
 
-          {/* Right arm — y1 animated 450 → 80 */}
+          {/* Right arm */}
           <line
             ref={uRightRef}
             x1="204" y1="450"
