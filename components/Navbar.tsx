@@ -31,7 +31,7 @@ export default function Navbar() {
         </Link>
 
         {/* Centre label */}
-        <p className="absolute left-1/2 -translate-x-1/2 font-mono text-[10px] tracking-[0.15em] uppercase text-muted pointer-events-none hidden sm:block">
+        <p className="absolute left-1/2 -translate-x-1/2 font-mono text-[10px] tracking-[0.15em] uppercase text-muted pointer-events-none">
           Stylist &amp; Visual Artist
         </p>
 
