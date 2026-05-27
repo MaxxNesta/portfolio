@@ -55,11 +55,17 @@ export default function Gallery() {
         {/* Left spacer — pushes first card away from screen edge */}
         <div className="flex-none w-10 sm:w-20 md:w-28" aria-hidden="true" />
 
-        {artworks.map((work) => (
+        {artworks.map((work, index) => {
+          const landscape = index % 2 === 1;
+          return (
           <Link
             key={work.id}
             href={`/works/${work.slug}`}
-            className="group relative flex-none w-[68vw] sm:w-[46vw] md:w-[30vw] lg:w-[26vw] h-[72vh] overflow-hidden cursor-none"
+            className={`group relative flex-none overflow-hidden cursor-none ${
+              landscape
+                ? "w-[76vw] sm:w-[52vw] md:w-[38vw] lg:w-[32vw] h-[48dvh]"
+                : "w-[46vw] sm:w-[28vw] md:w-[20vw] lg:w-[17vw] h-[72dvh]"
+            }`}
           >
             {/* Cover image — always visible, subtle zoom on hover */}
             {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -90,7 +96,8 @@ export default function Gallery() {
               </div>
             </div>
           </Link>
-        ))}
+          );
+        })}
       </div>
     </section>
   );
