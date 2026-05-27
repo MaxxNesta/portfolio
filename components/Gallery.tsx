@@ -44,7 +44,7 @@ export default function Gallery() {
     <section
       ref={sectionRef}
       id="gallery"
-      className="h-screen overflow-x-auto overflow-y-hidden md:overflow-hidden"
+      className="h-dvh overflow-x-auto overflow-y-hidden md:overflow-hidden"
       style={{ WebkitOverflowScrolling: "touch" } as React.CSSProperties}
     >
       <div
