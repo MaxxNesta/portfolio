@@ -49,7 +49,7 @@ export default function Gallery() {
     >
       <div
         ref={trackRef}
-        className="flex items-center gap-3 sm:gap-4 h-full px-6 sm:px-10"
+        className="flex items-center gap-3 sm:gap-4 h-full pl-16 sm:pl-28 pr-6 sm:pr-10"
         style={{ width: "max-content" }}
       >
         {artworks.map((work) => (
