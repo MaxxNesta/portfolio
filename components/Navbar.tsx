@@ -4,9 +4,9 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 
 const navLinks = [
-  { href: "#projects", label: "Projects" },
-  { href: "#info", label: "Info" },
-  { href: "#contact", label: "Contact" },
+  { href: "/projects", label: "Projects" },
+  { href: "/info", label: "Info" },
+  { href: "/contact", label: "Contact" },
 ];
 
 export default function Navbar() {
@@ -38,7 +38,7 @@ export default function Navbar() {
         {/* Desktop nav */}
         <nav className="hidden md:flex gap-5" aria-label="Main navigation">
           {navLinks.map(({ href, label }) => (
-            <a
+            <Link
               key={href}
               href={href}
               className="group relative font-mono text-[13px] tracking-wider text-ink cursor-none"
@@ -47,7 +47,7 @@ export default function Navbar() {
               {label}
               <span className="opacity-50">]</span>
               <span className="absolute -bottom-0.5 left-[15px] w-0 h-px bg-ink group-hover:w-[calc(100%-30px)] transition-all duration-300 ease-out" />
-            </a>
+            </Link>
           ))}
         </nav>
 
@@ -94,14 +94,14 @@ export default function Navbar() {
 
           <nav className="flex flex-col gap-8" aria-label="Mobile navigation">
             {navLinks.map(({ href, label }) => (
-              <a
+              <Link
                 key={href}
                 href={href}
                 className="font-mono text-[14px] tracking-[0.2em] uppercase text-ink"
                 onClick={() => setOpen(false)}
               >
                 {label}
-              </a>
+              </Link>
             ))}
           </nav>
 
