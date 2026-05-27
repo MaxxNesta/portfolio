@@ -22,10 +22,10 @@ export default function Hero() {
   useEffect(() => {
     const ctx = gsap.context(() => {
       const isMobile = window.matchMedia("(max-width: 767px)").matches;
-      const sw   = isMobile ? 11 : 20;   // stroke width
-      const barH = isMobile ? 11 : 20;   // crossbar rect height
-      const barY = 64 - barH / 2;        // keep crossbar centred at y=64
-      const stemY1 = barY + barH;        // stem starts at bottom of bar
+      const sw    = isMobile ? 11 : 20;
+      const barH  = isMobile ? 11 : 20;
+      const barY  = 64 - barH / 2;
+      const stemY1 = barY + barH;
 
       // ── Responsive stroke widths ────────────────────────────────────
       gsap.set(jBarRef.current,      { attr: { height: barH, y: barY } });
@@ -36,7 +36,7 @@ export default function Hero() {
       gsap.set(uRightRef.current,    { attr: { strokeWidth: sw } });
 
       // ── Initial SVG states (short letters) ─────────────────────────
-      gsap.set(jStemRef.current,  { attr: { y2: stemY1 + 164 } }); // 164 = original short length
+      gsap.set(jStemRef.current,  { attr: { y2: stemY1 + 164 } });
       gsap.set(jHookRef.current,  { y: stemY1 + 164 });
       gsap.set(uLeftRef.current,  { attr: { y1: 450 } });
       gsap.set(uRightRef.current, { attr: { y1: 450 } });
@@ -54,31 +54,36 @@ export default function Hero() {
           { opacity: 0 },
           { opacity: 1, duration: 0.6 }, "-=0.3");
 
-      // ── Scroll-pinned animation (all screen sizes) ──────────────────
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: "top top",
-          end: "+=600%",
-          pin: true,
-          pinType: "transform",
-          scrub: 1.8,
-          anticipatePin: 1,
-          invalidateOnRefresh: true,
-        },
-      });
+      // ── Scroll animation ─────────────────────────────────────────────
+      const stConfig = isMobile
+        ? {
+            // Mobile: no pin (prevents shaking), section scrolls away naturally
+            trigger: sectionRef.current,
+            start: "top top",
+            end: "bottom top",
+            scrub: 1,
+          }
+        : {
+            // Desktop: full pin with long scroll distance
+            trigger: sectionRef.current,
+            start: "top top",
+            end: "+=600%",
+            pin: true,
+            pinType: "transform" as const,
+            scrub: 1.8,
+            anticipatePin: 1,
+            invalidateOnRefresh: true,
+          };
+
+      const tl = gsap.timeline({ scrollTrigger: stConfig });
 
       tl.to(scrollHintRef.current, { opacity: 0, ease: "none", duration: 0.1 }, 0);
-
-      // J — stem grows, hook follows, crossbar widens
       tl.to(jStemRef.current, { attr: { y2: 538 }, ease: "none" }, 0);
       tl.to(jHookRef.current, { y: 538,            ease: "none" }, 0);
-      tl.to(jBarRef.current,  {
+      tl.to(jBarRef.current, {
         attr: { x: isMobile ? 20 : 14, width: isMobile ? 160 : 172 },
         ease: "none",
       }, 0);
-
-      // U — arms grow upward
       tl.to(uLeftRef.current,  { attr: { y1: 80 }, ease: "none" }, 0);
       tl.to(uRightRef.current, { attr: { y1: 80 }, ease: "none" }, 0);
     });
@@ -89,40 +94,29 @@ export default function Hero() {
   return (
     <section
       ref={sectionRef}
-      className="relative h-screen flex flex-col items-center px-6 sm:px-10 pb-8"
+      className="relative h-screen flex flex-col items-center px-4 sm:px-10 pb-8"
     >
-      <div className="flex-1 flex items-center justify-center gap-6 sm:gap-16 md:gap-24 lg:gap-32 min-h-0 w-full">
+      <div className="flex-1 flex items-center justify-center gap-4 sm:gap-16 md:gap-24 lg:gap-32 min-h-0 w-full">
 
         {/* ── J ───────────────────────────────────────────────────────── */}
         <svg
           ref={jSvgRef}
           viewBox="0 0 200 600"
-          className="h-full w-auto opacity-0"
+          className="h-[58vh] sm:h-full w-auto opacity-0"
           style={{ overflow: "visible", color: "#1A1A1A" }}
           aria-hidden="true"
         >
-          {/* Crossbar — height & x/width animated */}
           <rect ref={jBarRef} x="34" y="54" width="132" height="20" fill="currentColor" />
-
-          {/* Stem */}
           <line
             ref={jStemRef}
-            x1="100" y1="74"
-            x2="100" y2="238"
-            stroke="currentColor"
-            strokeWidth="20"
-            strokeLinecap="square"
+            x1="100" y1="74" x2="100" y2="238"
+            stroke="currentColor" strokeWidth="20" strokeLinecap="square"
           />
-
-          {/* Hook */}
           <g ref={jHookRef}>
             <path
               ref={jHookPathRef}
               d="M 100 0 L 100 22 C 100 82 62 96 38 84 C 16 72 14 46 30 38"
-              stroke="currentColor"
-              strokeWidth="20"
-              strokeLinecap="round"
-              fill="none"
+              stroke="currentColor" strokeWidth="20" strokeLinecap="round" fill="none"
             />
           </g>
         </svg>
@@ -131,38 +125,24 @@ export default function Hero() {
         <svg
           ref={uSvgRef}
           viewBox="0 0 240 600"
-          className="h-full w-auto opacity-0"
+          className="h-[58vh] sm:h-full w-auto opacity-0"
           style={{ overflow: "visible", color: "#1A1A1A" }}
           aria-hidden="true"
         >
-          {/* Bottom curve */}
           <path
             ref={uCurveRef}
             d="M 36 450 Q 36 536 120 536 Q 204 536 204 450"
-            stroke="currentColor"
-            strokeWidth="20"
-            strokeLinecap="round"
-            fill="none"
+            stroke="currentColor" strokeWidth="20" strokeLinecap="round" fill="none"
           />
-
-          {/* Left arm */}
           <line
             ref={uLeftRef}
-            x1="36" y1="450"
-            x2="36" y2="450"
-            stroke="currentColor"
-            strokeWidth="20"
-            strokeLinecap="round"
+            x1="36" y1="450" x2="36" y2="450"
+            stroke="currentColor" strokeWidth="20" strokeLinecap="round"
           />
-
-          {/* Right arm */}
           <line
             ref={uRightRef}
-            x1="204" y1="450"
-            x2="204" y2="450"
-            stroke="currentColor"
-            strokeWidth="20"
-            strokeLinecap="round"
+            x1="204" y1="450" x2="204" y2="450"
+            stroke="currentColor" strokeWidth="20" strokeLinecap="round"
           />
         </svg>
       </div>
