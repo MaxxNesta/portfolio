@@ -71,9 +71,10 @@ export default function Hero() {
   return (
     <section
       ref={sectionRef}
-      className="relative h-screen flex flex-col items-center px-6 sm:px-10 pt-20 sm:pt-24 pb-8"
+      className="relative h-screen flex flex-col items-center px-6 sm:px-10 pb-8"
     >
-      <p className="font-mono text-[10px] sm:text-[11px] tracking-[0.15em] uppercase text-muted mb-6 sm:mb-8 flex-none">
+      {/* Absolutely positioned — out of flex flow so SVGs can take full height */}
+      <p className="absolute top-20 sm:top-24 left-0 right-0 text-center font-mono text-[10px] sm:text-[11px] tracking-[0.15em] uppercase text-muted z-10">
         Stylist &amp; Visual Artist
       </p>
 
