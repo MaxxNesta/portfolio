@@ -44,7 +44,7 @@ export default function Hero() {
         scrollTrigger: {
           trigger: sectionRef.current,
           start: "top top",
-          end: "+=300%",
+          end: "+=600%",
           pin: true,
           pinType: "transform",
           scrub: 1.8,
