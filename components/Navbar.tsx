@@ -25,7 +25,7 @@ export default function Navbar() {
       >
         <Link
           href="/"
-          className="font-mono text-[11px] tracking-widest uppercase text-ink hover:opacity-60 transition-opacity duration-200 cursor-none"
+          className="font-mono text-[14px] tracking-widest uppercase text-ink hover:opacity-60 transition-opacity duration-200 cursor-none"
         >
           Ju
         </Link>
@@ -36,7 +36,7 @@ export default function Navbar() {
             <a
               key={href}
               href={href}
-              className="group relative font-mono text-[11px] tracking-wider text-ink cursor-none"
+              className="group relative font-mono text-[13px] tracking-wider text-ink cursor-none"
             >
               <span className="opacity-50">[</span>
               {label}
@@ -92,7 +92,7 @@ export default function Navbar() {
               <a
                 key={href}
                 href={href}
-                className="font-mono text-[12px] tracking-[0.2em] uppercase text-ink"
+                className="font-mono text-[14px] tracking-[0.2em] uppercase text-ink"
                 onClick={() => setOpen(false)}
               >
                 {label}

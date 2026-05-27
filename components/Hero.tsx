@@ -18,9 +18,6 @@ export default function Hero() {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // no scope arg — avoids ctx.revert() touching non-animated siblings
-      const isMobile = window.matchMedia("(max-width: 767px)").matches;
-
       // ── Initial SVG states (short letters) ─────────────────────────
       gsap.set(jStemRef.current,  { attr: { y2: 238 } });
       gsap.set(jHookRef.current,  { y: 238 });
@@ -35,39 +32,30 @@ export default function Hero() {
           { opacity: 1, y: 0, duration: 1.2 })
         .fromTo(uSvgRef.current,
           { opacity: 0, y: 40 },
-          { opacity: 1, y: 0, duration: 1.2 }, "-=1.0");
-
-      if (isMobile) {
-        // Mobile: letters animate as part of the intro, no scroll pin
-        gsap.set(scrollHintRef.current, { display: "none" });
-        intro
-          .to(jStemRef.current,  { attr: { y2: 538 }, duration: 1.1, ease: "power2.out" }, "-=0.2")
-          .to(jHookRef.current,  { y: 538,            duration: 1.1, ease: "power2.out" }, "<")
-          .to(uLeftRef.current,  { attr: { y1: 80 },  duration: 1.1, ease: "power2.out" }, "<")
-          .to(uRightRef.current, { attr: { y1: 80 },  duration: 1.1, ease: "power2.out" }, "<");
-      } else {
-        // Desktop: scroll hint, then pin + scrub
-        intro.fromTo(scrollHintRef.current,
+          { opacity: 1, y: 0, duration: 1.2 }, "-=1.0")
+        .fromTo(scrollHintRef.current,
           { opacity: 0 },
           { opacity: 1, duration: 0.6 }, "-=0.3");
 
-        const tl = gsap.timeline({
-          scrollTrigger: {
-            trigger: sectionRef.current,
-            start: "top top",
-            end: "+=170%",
-            pin: true,
-            pinType: "transform",
-            scrub: 1.8,
-            anticipatePin: 1,
-          },
-        });
-        tl.to(scrollHintRef.current, { opacity: 0, ease: "none", duration: 0.1 }, 0);
-        tl.to(jStemRef.current, { attr: { y2: 538 }, ease: "none" }, 0);
-        tl.to(jHookRef.current, { y: 538,            ease: "none" }, 0);
-        tl.to(uLeftRef.current,  { attr: { y1: 80 }, ease: "none" }, 0);
-        tl.to(uRightRef.current, { attr: { y1: 80 }, ease: "none" }, 0);
-      }
+      // ── Scroll-pinned animation (all screen sizes) ──────────────────
+      // Lenis is disabled on touch so native scroll drives this cleanly
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top top",
+          end: "+=170%",
+          pin: true,
+          pinType: "transform",
+          scrub: 1.8,
+          anticipatePin: 1,
+          invalidateOnRefresh: true,
+        },
+      });
+      tl.to(scrollHintRef.current, { opacity: 0, ease: "none", duration: 0.1 }, 0);
+      tl.to(jStemRef.current, { attr: { y2: 538 }, ease: "none" }, 0);
+      tl.to(jHookRef.current, { y: 538,            ease: "none" }, 0);
+      tl.to(uLeftRef.current,  { attr: { y1: 80 }, ease: "none" }, 0);
+      tl.to(uRightRef.current, { attr: { y1: 80 }, ease: "none" }, 0);
     });
 
     return () => ctx.revert();
