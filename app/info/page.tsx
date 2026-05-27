@@ -22,10 +22,10 @@ export default function InfoPage() {
   return (
     <>
       <Navbar />
-      <main className="min-h-screen bg-bg text-ink pt-24 sm:pt-28">
-        <section className="px-6 sm:px-10 py-16 sm:py-20">
+      <main className="min-h-screen bg-bg text-ink pt-20 sm:pt-24">
+        <section className="px-6 sm:px-10 py-10 sm:py-12">
 
-          <div className="grid grid-cols-1 md:grid-cols-[1fr_2fr] gap-16 md:gap-24 items-start mb-16">
+          <div className="grid grid-cols-1 md:grid-cols-[1fr_2fr] gap-16 md:gap-24 items-start mb-10">
             <div className="font-mono text-[11px] tracking-[0.12em] uppercase text-muted pt-1">
               Info
             </div>

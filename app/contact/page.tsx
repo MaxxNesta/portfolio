@@ -8,12 +8,12 @@ export default function ContactPage() {
     <>
       <Navbar />
       <main className="min-h-screen bg-bg text-ink pt-20 sm:pt-24">
-        <section className="px-6 sm:px-10 py-24 sm:py-28 md:py-36 border-t border-line">
-          <p className="font-mono text-[11px] tracking-[0.12em] uppercase text-muted mb-10">
+        <section className="px-6 sm:px-10 py-10 sm:py-12 md:py-16 border-t border-line">
+          <p className="font-mono text-[11px] tracking-[0.12em] uppercase text-muted mb-8">
             Get in touch
           </p>
 
-          <h2 className="font-serif font-light text-[clamp(48px,8vw,130px)] leading-[0.93] tracking-[-0.02em] mb-16">
+          <h2 className="font-serif font-light text-[clamp(48px,8vw,130px)] leading-[0.93] tracking-[-0.02em] mb-10">
             Like what
             <br />
             you <em>see?</em>
