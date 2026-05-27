@@ -71,19 +71,19 @@ export default function Hero() {
   return (
     <section
       ref={sectionRef}
-      className="relative min-h-screen flex flex-col items-center px-6 sm:px-10 pt-24 sm:pt-32 md:pt-36 lg:pt-40 pb-12"
+      className="relative h-screen flex flex-col items-center px-6 sm:px-10 pt-20 sm:pt-24 pb-8"
     >
-      <p className="font-mono text-[10px] sm:text-[11px] tracking-[0.15em] uppercase text-muted mb-8 md:mb-12 lg:mb-14">
+      <p className="font-mono text-[10px] sm:text-[11px] tracking-[0.15em] uppercase text-muted mb-6 sm:mb-8 flex-none">
         Stylist &amp; Visual Artist
       </p>
 
-      <div className="flex items-start gap-5 sm:gap-10 md:gap-20 lg:gap-28">
+      <div className="flex-1 flex items-center justify-center gap-8 sm:gap-16 md:gap-24 lg:gap-32 min-h-0 w-full">
 
         {/* ── J ───────────────────────────────────────────────────────── */}
         <svg
           ref={jSvgRef}
           viewBox="0 0 200 600"
-          className="h-[34vh] sm:h-[42vh] md:h-[50vh] lg:h-[56vh] w-auto opacity-0"
+          className="h-full w-auto opacity-0"
           style={{ overflow: "visible", color: "#1A1A1A" }}
           aria-hidden="true"
         >
@@ -116,7 +116,7 @@ export default function Hero() {
         <svg
           ref={uSvgRef}
           viewBox="0 0 240 600"
-          className="h-[34vh] sm:h-[42vh] md:h-[50vh] lg:h-[56vh] w-auto opacity-0"
+          className="h-full w-auto opacity-0"
           style={{ overflow: "visible", color: "#1A1A1A" }}
           aria-hidden="true"
         >
