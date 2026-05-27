@@ -47,7 +47,7 @@ export default function Contact() {
       </h2>
 
       <a
-        href="mailto:kaunghtet2782001@gmail.com"
+        href="mailto:"
         className="contact-animate group relative inline-flex items-center gap-2 font-mono text-[13px] tracking-wider text-ink cursor-none opacity-0"
         aria-label="Send me an email"
       >

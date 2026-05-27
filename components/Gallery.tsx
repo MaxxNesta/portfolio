@@ -59,58 +59,53 @@ export default function Gallery() {
           <Link
             key={work.id}
             href={`/works/${work.slug}`}
-            className="group relative flex-none w-[68vw] sm:w-[46vw] md:w-[30vw] lg:w-[26vw] h-[72vh] overflow-hidden cursor-none"
+            className="group relative flex-none w-[68vw] sm:w-[46vw] md:w-[30vw] lg:w-[26vw] h-[72vh] overflow-hidden cursor-none bg-ink"
           >
-            {/* Cover image */}
+            {/* Cover image — hidden by default, fades in on hover */}
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src={work.cover}
               alt={work.name}
-              className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+              className="absolute inset-0 w-full h-full object-cover opacity-0 group-hover:opacity-100 scale-105 group-hover:scale-100 transition-all duration-700 ease-out"
               loading="lazy"
             />
 
-            {/* Default bottom label — fades on hover */}
-            <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/55 to-transparent px-5 pb-5 pt-16 z-10 transition-opacity duration-400 group-hover:opacity-0">
-              <p className="font-mono text-[10px] tracking-widest text-white/50 mb-1">{work.id}</p>
-              <p className="font-mono text-[11px] tracking-wider uppercase text-white/85">{work.name}</p>
-            </div>
+            {/* Dark scrim over photo on hover */}
+            <div className="absolute inset-0 bg-ink/50 opacity-0 group-hover:opacity-100 transition-opacity duration-700 z-10" />
 
-            {/* Hover overlay */}
-            <div className="absolute inset-0 bg-ink/90 px-5 sm:px-6 py-6 flex flex-col justify-between z-20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 ease-out">
+            {/* Default text state — always visible, fades out on hover */}
+            <div className="absolute inset-0 px-5 sm:px-6 py-6 flex flex-col justify-between z-20 transition-opacity duration-500 group-hover:opacity-0">
+              <p className="font-mono text-[9px] sm:text-[10px] tracking-widest text-white/40 uppercase">
+                {work.id} — {work.tags}
+              </p>
               <div>
-                <p className="font-mono text-[9px] sm:text-[10px] tracking-widest text-white/40 mb-4 uppercase">
-                  {work.id} — {work.tags}
+                <p className="font-mono text-[9px] tracking-widest text-white/30 uppercase mb-3">
+                  {work.year}
                 </p>
                 <h3
-                  className="font-serif font-light italic text-paper leading-[1.1] mb-5"
+                  className="font-serif font-light italic text-white leading-[1.1]"
                   style={{ fontSize: "clamp(26px, 2.8vw, 38px)" }}
                 >
                   {work.name}
                 </h3>
-                <p className="font-mono text-[10px] sm:text-[11px] leading-[1.8] text-white/55 max-w-[95%]">
+              </div>
+            </div>
+
+            {/* Hover text overlay — fades in on hover */}
+            <div className="absolute inset-0 px-5 sm:px-6 py-6 flex flex-col justify-between z-30 opacity-0 group-hover:opacity-100 transition-opacity duration-500 ease-out">
+              <p className="font-mono text-[9px] sm:text-[10px] tracking-widest text-white/50 uppercase">
+                {work.id} — {work.tags}
+              </p>
+              <div>
+                <h3
+                  className="font-serif font-light italic text-white leading-[1.1] mb-4"
+                  style={{ fontSize: "clamp(26px, 2.8vw, 38px)" }}
+                >
+                  {work.name}
+                </h3>
+                <p className="font-mono text-[10px] sm:text-[11px] leading-[1.8] text-white/70 max-w-[95%]">
                   {work.description}
                 </p>
-              </div>
-
-              {/* Sub-images */}
-              <div>
-                <p className="font-mono text-[9px] tracking-widest text-white/30 uppercase mb-3">
-                  Works
-                </p>
-                <div className="flex gap-2">
-                  {work.images.map((src, i) => (
-                    <div key={i} className="flex-1 overflow-hidden" style={{ aspectRatio: "2/3" }}>
-                      {/* eslint-disable-next-line @next/next/no-img-element */}
-                      <img
-                        src={src}
-                        alt=""
-                        className="w-full h-full object-cover opacity-70 hover:opacity-100 transition-opacity duration-300"
-                        loading="lazy"
-                      />
-                    </div>
-                  ))}
-                </div>
               </div>
             </div>
           </Link>

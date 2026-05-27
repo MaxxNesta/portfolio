@@ -4,46 +4,37 @@ import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 
 export default function CustomCursor() {
-  const dotRef = useRef<HTMLDivElement>(null);
-  const ringRef = useRef<HTMLDivElement>(null);
+  const starRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const dot = dotRef.current;
-    const ring = ringRef.current;
-    if (!dot || !ring) return;
+    const star = starRef.current;
+    if (!star) return;
 
     let revealed = false;
 
-    const xDot = gsap.quickTo(dot, "x", { duration: 0.1, ease: "power1.out" });
-    const yDot = gsap.quickTo(dot, "y", { duration: 0.1, ease: "power1.out" });
-    const xRing = gsap.quickTo(ring, "x", { duration: 0.35, ease: "power2.out" });
-    const yRing = gsap.quickTo(ring, "y", { duration: 0.35, ease: "power2.out" });
+    const xStar = gsap.quickTo(star, "x", { duration: 0.12, ease: "power2.out" });
+    const yStar = gsap.quickTo(star, "y", { duration: 0.12, ease: "power2.out" });
 
     const onMove = (e: MouseEvent) => {
-      xDot(e.clientX);
-      yDot(e.clientY);
-      xRing(e.clientX);
-      yRing(e.clientY);
-
+      xStar(e.clientX);
+      yStar(e.clientY);
       if (!revealed) {
         revealed = true;
-        gsap.to([dot, ring], { opacity: 1, duration: 0.4 });
+        gsap.to(star, { opacity: 1, duration: 0.4 });
       }
     };
 
     const onOver = (e: MouseEvent) => {
       const target = e.target as Element;
       if (target.closest("a, button")) {
-        gsap.to(ring, { scale: 1.8, opacity: 0.5, duration: 0.3 });
-        gsap.to(dot, { scale: 0, duration: 0.2 });
+        gsap.to(star, { scale: 1.6, rotation: 45, duration: 0.3, ease: "power2.out" });
       }
     };
 
     const onOut = (e: MouseEvent) => {
       const target = e.target as Element;
       if (target.closest("a, button")) {
-        gsap.to(ring, { scale: 1, opacity: 1, duration: 0.3 });
-        gsap.to(dot, { scale: 1, duration: 0.2 });
+        gsap.to(star, { scale: 1, rotation: 0, duration: 0.3, ease: "power2.out" });
       }
     };
 
@@ -59,9 +50,10 @@ export default function CustomCursor() {
   }, []);
 
   return (
-    <>
-      <div ref={dotRef} className="cursor-dot" aria-hidden="true" />
-      <div ref={ringRef} className="cursor-ring" aria-hidden="true" />
-    </>
+    <div ref={starRef} className="cursor-star" aria-hidden="true">
+      <svg viewBox="-12 -12 24 24" width="24" height="24" fill="currentColor">
+        <path d="M0,-11 L2.5,-2.5 L11,0 L2.5,2.5 L0,11 L-2.5,2.5 L-11,0 L-2.5,-2.5 Z" />
+      </svg>
+    </div>
   );
 }

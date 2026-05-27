@@ -15,6 +15,33 @@ export default function ProjectsPage() {
             Selected works
           </p>
 
+          {/* Photo grid */}
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-3 sm:gap-4 mb-20">
+            {artworks.map((work) => (
+              <Link
+                key={work.id}
+                href={`/works/${work.slug}`}
+                className="group relative overflow-hidden bg-ink"
+                style={{ aspectRatio: "2/3" }}
+              >
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={work.cover}
+                  alt={work.name}
+                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                  loading="lazy"
+                />
+                <div className="absolute inset-0 bg-ink/40 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end p-4">
+                  <div>
+                    <p className="font-mono text-[9px] tracking-widest text-white/50 uppercase mb-1">{work.id}</p>
+                    <p className="font-serif font-light italic text-white text-[15px] leading-tight">{work.name}</p>
+                  </div>
+                </div>
+              </Link>
+            ))}
+          </div>
+
+          {/* Text list */}
           <ul aria-label="Projects">
             {artworks.map((work) => (
               <li key={work.id} className="border-t border-line last:border-b last:border-line">
