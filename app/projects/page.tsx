@@ -9,7 +9,7 @@ export default function ProjectsPage() {
   return (
     <>
       <Navbar />
-      <main className="min-h-screen bg-bg text-ink pt-20 sm:pt-24">
+      <main className="min-h-screen bg-bg text-ink pt-14 sm:pt-24">
         <section className="px-6 sm:px-10 py-16 sm:py-20">
           <p className="font-mono text-[11px] tracking-[0.12em] uppercase text-muted mb-14">
             Selected works
