@@ -31,6 +31,10 @@ body {
   cursor: none;
 }
 
+a, button, input, textarea, select, label, [role="button"] {
+  cursor: none;
+}
+
 /* Custom cursor */
 .cursor-star {
   position: fixed;
@@ -62,6 +66,15 @@ body {
 @media (max-width: 768px) {
   body {
     cursor: auto;
+  }
+  a, button, input, textarea, select, label, [role="button"] {
+    cursor: auto;
+  }
+  a[href] {
+    cursor: pointer;
+  }
+  button {
+    cursor: pointer;
   }
   .cursor-star {
     display: none;

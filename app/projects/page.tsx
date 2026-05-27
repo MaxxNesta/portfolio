@@ -16,7 +16,7 @@ export default function ProjectsPage() {
           </p>
 
           {/* Photo grid */}
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-3 sm:gap-4 mb-20">
+          <div className="grid grid-cols-3 md:grid-cols-4 gap-5 sm:gap-7 mb-20">
             {artworks.map((work) => (
               <Link
                 key={work.id}

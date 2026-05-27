@@ -59,40 +59,21 @@ export default function Gallery() {
           <Link
             key={work.id}
             href={`/works/${work.slug}`}
-            className="group relative flex-none w-[68vw] sm:w-[46vw] md:w-[30vw] lg:w-[26vw] h-[72vh] overflow-hidden cursor-none bg-ink"
+            className="group relative flex-none w-[68vw] sm:w-[46vw] md:w-[30vw] lg:w-[26vw] h-[72vh] overflow-hidden cursor-none"
           >
-            {/* Cover image — hidden by default, fades in on hover */}
+            {/* Cover image — always visible, subtle zoom on hover */}
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src={work.cover}
               alt={work.name}
-              className="absolute inset-0 w-full h-full object-cover opacity-0 group-hover:opacity-100 scale-105 group-hover:scale-100 transition-all duration-700 ease-out"
+              className="absolute inset-0 w-full h-full object-cover scale-100 group-hover:scale-105 transition-transform duration-700 ease-out"
               loading="lazy"
             />
 
-            {/* Dark scrim over photo on hover */}
-            <div className="absolute inset-0 bg-ink/50 opacity-0 group-hover:opacity-100 transition-opacity duration-700 z-10" />
+            {/* Dark scrim + description — fades in on hover */}
+            <div className="absolute inset-0 bg-ink/60 opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10" />
 
-            {/* Default text state — always visible, fades out on hover */}
-            <div className="absolute inset-0 px-5 sm:px-6 py-6 flex flex-col justify-between z-20 transition-opacity duration-500 group-hover:opacity-0">
-              <p className="font-mono text-[9px] sm:text-[10px] tracking-widest text-white/40 uppercase">
-                {work.id} — {work.tags}
-              </p>
-              <div>
-                <p className="font-mono text-[9px] tracking-widest text-white/30 uppercase mb-3">
-                  {work.year}
-                </p>
-                <h3
-                  className="font-serif font-light italic text-white leading-[1.1]"
-                  style={{ fontSize: "clamp(26px, 2.8vw, 38px)" }}
-                >
-                  {work.name}
-                </h3>
-              </div>
-            </div>
-
-            {/* Hover text overlay — fades in on hover */}
-            <div className="absolute inset-0 px-5 sm:px-6 py-6 flex flex-col justify-between z-30 opacity-0 group-hover:opacity-100 transition-opacity duration-500 ease-out">
+            <div className="absolute inset-0 px-5 sm:px-6 py-6 flex flex-col justify-between z-20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 ease-out">
               <p className="font-mono text-[9px] sm:text-[10px] tracking-widest text-white/50 uppercase">
                 {work.id} — {work.tags}
               </p>
