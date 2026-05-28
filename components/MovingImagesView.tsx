@@ -37,7 +37,7 @@ const videos: VideoWork[] = [
     title: "Reverie",
     tags: "Art Direction",
     year: "2024",
-    src: "https://cdn.pixabay.com/video/2022/04/14/113861-699653893_large.mp4",
+    src: "https://cdn.pixabay.com/video/2024/03/08/203449-921267347_large.mp4",
   },
 ];
 
