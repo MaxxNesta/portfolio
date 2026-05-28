@@ -33,7 +33,6 @@ export default function ProjectsView() {
           1
         </span>
 
-        <p className="font-mono text-[9px] tracking-[0.18em] uppercase text-muted relative z-10">01</p>
 
         <div className="relative z-10">
           <p className="font-mono leading-[1.0] text-[clamp(36px,6vw,90px)] text-ink mb-3">
@@ -66,7 +65,6 @@ export default function ProjectsView() {
           2
         </span>
 
-        <p className="font-mono text-[9px] tracking-[0.18em] uppercase text-bg/40 relative z-10">02</p>
 
         <div className="relative z-10">
           <p className="font-mono leading-[1.0] text-[clamp(36px,6vw,90px)] text-bg mb-3">
