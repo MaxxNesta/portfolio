@@ -173,12 +173,6 @@ export default function MovingImagesView() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [active]);
 
-  useEffect(() => {
-    if (active && modalVideoRef.current) {
-      modalVideoRef.current.play().catch(() => {});
-    }
-  }, [active]);
-
   return (
     <>
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 sm:gap-8">
@@ -201,6 +195,7 @@ export default function MovingImagesView() {
             <video
               ref={modalVideoRef}
               src={active.src}
+              autoPlay
               controls
               playsInline
               className="w-full aspect-video bg-black"
