@@ -21,7 +21,7 @@ const videos: VideoWork[] = [
     tags: "Fashion Film",
     year: "2025",
     poster: `${UNS}1515886657613-9f3515b0c78f${q}`,
-    src: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4",
+    src: "https://cdn.pixabay.com/video/2023/01/11/146130-788410151_large.mp4",
   },
   {
     id: "02",
@@ -29,7 +29,7 @@ const videos: VideoWork[] = [
     tags: "Short Film",
     year: "2025",
     poster: `${UNS}1469334031218-e382a71b716b${q}`,
-    src: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4",
+    src: "https://cdn.pixabay.com/video/2016/07/01/3681-173505067_large.mp4",
   },
   {
     id: "03",
@@ -37,7 +37,7 @@ const videos: VideoWork[] = [
     tags: "Motion Study",
     year: "2024",
     poster: `${UNS}1483985988355-763728e1935b${q}`,
-    src: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4",
+    src: "https://cdn.pixabay.com/video/2023/01/11/146130-788410151_large.mp4",
   },
   {
     id: "04",
@@ -45,7 +45,7 @@ const videos: VideoWork[] = [
     tags: "Art Direction",
     year: "2024",
     poster: `${UNS}1534528741775-53994a69daeb${q}`,
-    src: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/SubaruOutbackOnStreetAndDirt.mp4",
+    src: "https://cdn.pixabay.com/video/2016/07/01/3681-173505067_large.mp4",
   },
 ];
 
