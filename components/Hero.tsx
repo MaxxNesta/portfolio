@@ -22,8 +22,8 @@ export default function Hero() {
   useEffect(() => {
     const ctx = gsap.context(() => {
       const isMobile = window.matchMedia("(max-width: 767px)").matches;
-      const sw    = isMobile ? 11 : 5;
-      const barH  = isMobile ? 11 : 5;
+      const sw    = 5;
+      const barH  = 5;
       const barY  = 64 - barH / 2;
       const stemY1 = barY + barH;
 

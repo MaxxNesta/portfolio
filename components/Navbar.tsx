@@ -30,11 +30,6 @@ export default function Navbar() {
           Ju
         </Link>
 
-        {/* Centre label */}
-        <p className="absolute left-1/2 -translate-x-1/2 font-mono text-[10px] tracking-[0.15em] uppercase text-muted pointer-events-none">
-          Stylist &amp; Visual Artist
-        </p>
-
         {/* Desktop nav */}
         <nav className="hidden md:flex gap-5" aria-label="Main navigation">
           {navLinks.map(({ href, label }) => (
