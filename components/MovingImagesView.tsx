@@ -52,10 +52,13 @@ function VideoCard({
 }) {
   const videoRef = useRef<HTMLVideoElement>(null);
 
-  const handleEnter = () => {
-    videoRef.current?.play().catch(() => {});
+  // Seek to first frame once metadata loads so thumbnail shows on all devices
+  const handleLoadedMetadata = () => {
+    if (videoRef.current) videoRef.current.currentTime = 0.01;
   };
 
+  // Desktop: hover to play / pause
+  const handleEnter = () => videoRef.current?.play().catch(() => {});
   const handleLeave = () => {
     if (videoRef.current) {
       videoRef.current.pause();
@@ -63,15 +66,40 @@ function VideoCard({
     }
   };
 
+  // Mobile: play when card is in viewport, pause when out
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+    const isTouch = window.matchMedia("(hover: none)").matches;
+    if (!isTouch) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          video.play().catch(() => {});
+        } else {
+          video.pause();
+          video.currentTime = 0;
+        }
+      },
+      { threshold: 0.6 }
+    );
+    observer.observe(video);
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <div className="flex flex-col">
       <button
         onMouseEnter={handleEnter}
         onMouseLeave={handleLeave}
-        onClick={() => onOpen(v)}
+        onClick={() => {
+          videoRef.current?.pause();
+          onOpen(v);
+        }}
         className="group relative w-full aspect-video overflow-hidden bg-ink cursor-none text-left"
       >
-        {/* Video — always visible, paused = first frame shown as thumbnail */}
+        {/* Video — always visible; paused = first frame as thumbnail */}
         <video
           ref={videoRef}
           src={v.src}
@@ -79,6 +107,7 @@ function VideoCard({
           loop
           playsInline
           preload="metadata"
+          onLoadedMetadata={handleLoadedMetadata}
           className="absolute inset-0 w-full h-full object-cover"
         />
 
