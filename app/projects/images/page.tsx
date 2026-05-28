@@ -24,26 +24,26 @@ export default function ImagesPage() {
 
           <div className="grid grid-cols-3 md:grid-cols-4 gap-5 sm:gap-7">
             {artworks.map((work) => (
-              <Link
-                key={work.id}
-                href={`/works/${work.slug}`}
-                className="group relative overflow-hidden bg-ink cursor-none"
-                style={{ aspectRatio: "2/3" }}
-              >
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src={work.cover}
-                  alt={work.name}
-                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
-                  loading="lazy"
-                />
-                <div className="absolute inset-0 bg-ink/40 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end p-4">
-                  <div>
-                    <p className="font-mono text-[9px] tracking-widest text-white/50 uppercase mb-1">{work.id}</p>
-                    <p className="font-serif font-light italic text-white text-[15px] leading-tight">{work.name}</p>
-                  </div>
+              <div key={work.id} className="flex flex-col">
+                <Link
+                  href={`/works/${work.slug}`}
+                  className="group relative overflow-hidden bg-ink cursor-none"
+                  style={{ aspectRatio: "2/3" }}
+                >
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src={work.cover}
+                    alt={work.name}
+                    className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                    loading="lazy"
+                  />
+                  <div className="absolute inset-0 bg-ink/30 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                </Link>
+                <div className="pt-2 sm:pt-3">
+                  <p className="font-mono text-[9px] tracking-[0.12em] uppercase text-ink">{work.name}</p>
+                  <p className="font-mono text-[8px] tracking-[0.1em] uppercase text-muted mt-0.5">{work.tags}</p>
                 </div>
-              </Link>
+              </div>
             ))}
           </div>
         </section>
