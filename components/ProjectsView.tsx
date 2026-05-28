@@ -6,58 +6,50 @@ import { artworks } from "@/lib/artworks";
 
 type Tab = "images" | "moving";
 
+const STRIP = "left-20 sm:left-24"; // width of Card 1 strip visible when Card 2 is active
+
 export default function ProjectsView() {
   const [active, setActive] = useState<Tab>("images");
 
   return (
     <section className="px-6 sm:px-10 py-10 sm:py-12">
 
-      {/* Stacked card deck — full width, landscape */}
-      {/* Wrapper has extra bottom+right padding so the peeking back card doesn't clip */}
-      <div className="relative w-full pb-4 pr-4 mb-14 sm:mb-16">
+      {/* Card deck — full width, landscape, overflow hidden so Card 2 slides in from right */}
+      <div className="relative w-full h-48 sm:h-56 md:h-64 overflow-hidden mb-14 sm:mb-16">
 
-        {/* Moving Images — back card when Images is active */}
-        <button
-          onClick={() => setActive("moving")}
-          className={`absolute inset-0 w-full h-full flex flex-col justify-between p-8 sm:p-12 border border-line cursor-none text-left transition-all duration-500 ease-out ${
-            active === "moving"
-              ? "z-20 translate-x-0 translate-y-0 bg-ink text-bg"
-              : "z-10 translate-x-4 translate-y-4 bg-bg text-ink"
-          }`}
-        >
-          <p className="font-mono text-[9px] tracking-[0.15em] uppercase opacity-40">02</p>
-          <div className="flex items-end justify-between">
-            <p className="font-serif font-light italic leading-[1.05] text-[clamp(32px,5vw,72px)]">
-              Moving Images
-            </p>
-            <p className="font-mono text-[9px] tracking-[0.12em] uppercase opacity-40 mb-1">
-              Video & Animation
-            </p>
-          </div>
-        </button>
-
-        {/* Images — front card by default */}
+        {/* Card 1 — Images, always anchored at left:0 */}
         <button
           onClick={() => setActive("images")}
-          className={`absolute inset-0 w-full h-full flex flex-col justify-between p-8 sm:p-12 border border-line cursor-none text-left transition-all duration-500 ease-out ${
-            active === "images"
-              ? "z-20 translate-x-0 translate-y-0 bg-ink text-bg"
-              : "z-10 translate-x-4 translate-y-4 bg-bg text-ink"
-          }`}
+          className="absolute inset-0 w-full h-full flex flex-col justify-between p-8 sm:p-12 bg-bg border border-line cursor-none text-left"
         >
-          <p className="font-mono text-[9px] tracking-[0.15em] uppercase opacity-40">01</p>
+          <p className="font-mono text-[9px] tracking-[0.15em] uppercase text-muted">01</p>
           <div className="flex items-end justify-between">
-            <p className="font-serif font-light italic leading-[1.05] text-[clamp(32px,5vw,72px)]">
+            <p className="font-serif font-light italic leading-[1.05] text-[clamp(28px,4.5vw,64px)] text-ink">
               Images
             </p>
-            <p className="font-mono text-[9px] tracking-[0.12em] uppercase opacity-40 mb-1">
+            <p className="font-mono text-[9px] tracking-[0.12em] uppercase text-muted mb-1">
               Photography & Styling
             </p>
           </div>
         </button>
 
-        {/* Invisible spacer — gives the relative container its height */}
-        <div className="w-full h-48 sm:h-56 md:h-64" />
+        {/* Card 2 — Moving Images, slides in from the right, covers Card 1 */}
+        <button
+          onClick={() => setActive("moving")}
+          className={`absolute top-0 w-full h-full flex flex-col justify-between p-8 sm:p-12 bg-ink cursor-none text-left transition-all duration-700 ease-[cubic-bezier(0.76,0,0.24,1)] ${
+            active === "moving" ? STRIP : "left-full"
+          }`}
+        >
+          <p className="font-mono text-[9px] tracking-[0.15em] uppercase text-bg/40">02</p>
+          <div className="flex items-end justify-between">
+            <p className="font-serif font-light italic leading-[1.05] text-[clamp(28px,4.5vw,64px)] text-bg">
+              Moving Images
+            </p>
+            <p className="font-mono text-[9px] tracking-[0.12em] uppercase text-bg/40 mb-1">
+              Video & Animation
+            </p>
+          </div>
+        </button>
       </div>
 
       {/* Content */}
