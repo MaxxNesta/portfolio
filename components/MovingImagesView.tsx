@@ -30,14 +30,14 @@ const videos: VideoWork[] = [
     title: "Thread",
     tags: "Motion Study",
     year: "2024",
-    src: "https://cdn.pixabay.com/video/2023/01/11/146130-788410151_large.mp4",
+    src: "https://cdn.pixabay.com/video/2015/11/10/1307-145340154_medium.mp4",
   },
   {
     id: "04",
     title: "Reverie",
     tags: "Art Direction",
     year: "2024",
-    src: "https://cdn.pixabay.com/video/2016/07/01/3681-173505067_large.mp4",
+    src: "https://cdn.pixabay.com/video/2022/04/14/113861-699653893_large.mp4",
   },
 ];
 
