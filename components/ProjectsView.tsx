@@ -22,7 +22,7 @@ export default function ProjectsView() {
       {/* Card 1 — Images */}
       <button
         onClick={() => router.push("/projects/images")}
-        className="absolute inset-0 w-full h-full flex flex-col justify-between px-8 sm:px-14 py-10 sm:py-14 bg-bg cursor-none text-left z-10"
+        className="absolute inset-0 w-full h-full flex flex-col justify-end px-8 sm:px-14 py-10 sm:py-14 bg-bg cursor-none text-left z-10"
       >
         {/* Ghost number */}
         <span
@@ -50,7 +50,7 @@ export default function ProjectsView() {
       {/* Card 2 — Moving Images, peeks from right, scroll triggers slide */}
       <button
         onClick={() => router.push("/projects/moving-images")}
-        className={`absolute top-0 w-full h-full flex flex-col justify-between px-8 sm:px-14 py-10 sm:py-14 bg-ink cursor-none text-left z-20 transition-all duration-700 ease-[cubic-bezier(0.76,0,0.24,1)] ${
+        className={`absolute top-0 w-full h-full flex flex-col justify-end px-8 sm:px-14 py-10 sm:py-14 bg-ink cursor-none text-left z-20 transition-all duration-700 ease-[cubic-bezier(0.76,0,0.24,1)] ${
           card2Visible
             ? "left-16 sm:left-20"
             : "left-[calc(100%-4rem)] sm:left-[calc(100%-5rem)]"
