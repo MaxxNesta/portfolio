@@ -1,11 +1,53 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
+
+const CHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+const FRAMES = 20;
+const FRAME_MS = 55;
+
+function scrambleWord(
+  word: string,
+  setter: (s: string) => void,
+  delayMs: number,
+  ids: { current: (ReturnType<typeof setTimeout> | ReturnType<typeof setInterval>)[] }
+) {
+  const t = setTimeout(() => {
+    let frame = 0;
+    const id = setInterval(() => {
+      setter(
+        word
+          .split("")
+          .map((char, i) =>
+            frame / FRAMES > i / word.length
+              ? char
+              : CHARS[Math.floor(Math.random() * CHARS.length)]
+          )
+          .join("")
+      );
+      frame++;
+      if (frame > FRAMES) {
+        clearInterval(id);
+        setter(word);
+      }
+    }, FRAME_MS);
+    ids.current.push(id);
+  }, delayMs);
+  ids.current.push(t);
+}
 
 export default function ProjectsView() {
   const router = useRouter();
   const [card2Visible, setCard2Visible] = useState(false);
+  const [line1, setLine1] = useState("Moving");
+  const [line2, setLine2] = useState("Images");
+  const timerIds = useRef<(ReturnType<typeof setTimeout> | ReturnType<typeof setInterval>)[]>([]);
+
+  const triggerScramble = () => {
+    scrambleWord("Moving", setLine1, 0, timerIds);
+    scrambleWord("Images", setLine2, 180, timerIds);
+  };
 
   useEffect(() => {
     const onWheel = (e: WheelEvent) => {
@@ -14,6 +56,23 @@ export default function ProjectsView() {
     };
     window.addEventListener("wheel", onWheel, { passive: true });
     return () => window.removeEventListener("wheel", onWheel);
+  }, []);
+
+  // Trigger scramble when card slides in
+  useEffect(() => {
+    if (card2Visible) triggerScramble();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [card2Visible]);
+
+  // Periodic scramble loop
+  useEffect(() => {
+    triggerScramble();
+    const loop = setInterval(triggerScramble, 5000);
+    timerIds.current.push(loop);
+    return () => {
+      timerIds.current.forEach((id) => clearTimeout(id as ReturnType<typeof setTimeout>));
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
@@ -32,7 +91,6 @@ export default function ProjectsView() {
         >
           1
         </span>
-
 
         <div className="relative z-10">
           <p className="font-mono leading-[1.0] text-[clamp(36px,6vw,90px)] text-ink mb-3">
@@ -65,10 +123,9 @@ export default function ProjectsView() {
           2
         </span>
 
-
         <div className="relative z-10">
           <p className="font-mono leading-[1.0] text-[clamp(36px,6vw,90px)] text-bg mb-3">
-            Moving<br />Images
+            {line1}<br />{line2}
           </p>
           <p className="font-mono text-[9px] tracking-[0.12em] uppercase text-bg/40 mb-6">
             Video & Animation
