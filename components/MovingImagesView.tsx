@@ -8,11 +8,7 @@ type VideoWork = {
   tags: string;
   year: string;
   src: string;
-  poster: string;
 };
-
-const UNS = "https://images.unsplash.com/photo-";
-const q   = "?auto=format&fit=crop&q=80&w=1400";
 
 const videos: VideoWork[] = [
   {
@@ -20,7 +16,6 @@ const videos: VideoWork[] = [
     title: "Bloom",
     tags: "Fashion Film",
     year: "2025",
-    poster: `${UNS}1515886657613-9f3515b0c78f${q}`,
     src: "https://cdn.pixabay.com/video/2023/01/11/146130-788410151_large.mp4",
   },
   {
@@ -28,7 +23,6 @@ const videos: VideoWork[] = [
     title: "Dusk",
     tags: "Short Film",
     year: "2025",
-    poster: `${UNS}1469334031218-e382a71b716b${q}`,
     src: "https://cdn.pixabay.com/video/2016/07/01/3681-173505067_large.mp4",
   },
   {
@@ -36,7 +30,6 @@ const videos: VideoWork[] = [
     title: "Thread",
     tags: "Motion Study",
     year: "2024",
-    poster: `${UNS}1483985988355-763728e1935b${q}`,
     src: "https://cdn.pixabay.com/video/2023/01/11/146130-788410151_large.mp4",
   },
   {
@@ -44,7 +37,6 @@ const videos: VideoWork[] = [
     title: "Reverie",
     tags: "Art Direction",
     year: "2024",
-    poster: `${UNS}1534528741775-53994a69daeb${q}`,
     src: "https://cdn.pixabay.com/video/2016/07/01/3681-173505067_large.mp4",
   },
 ];
@@ -59,15 +51,12 @@ function VideoCard({
   onOpen: (v: VideoWork) => void;
 }) {
   const videoRef = useRef<HTMLVideoElement>(null);
-  const [hovered, setHovered] = useState(false);
 
   const handleEnter = () => {
-    setHovered(true);
     videoRef.current?.play().catch(() => {});
   };
 
   const handleLeave = () => {
-    setHovered(false);
     if (videoRef.current) {
       videoRef.current.pause();
       videoRef.current.currentTime = 0;
@@ -82,15 +71,7 @@ function VideoCard({
         onClick={() => onOpen(v)}
         className="group relative w-full aspect-video overflow-hidden bg-ink cursor-none text-left"
       >
-        {/* Static poster — always visible */}
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src={v.poster}
-          alt={v.title}
-          className="absolute inset-0 w-full h-full object-cover"
-        />
-
-        {/* Video — fades in on hover, plays muted */}
+        {/* Video — always visible, paused = first frame shown as thumbnail */}
         <video
           ref={videoRef}
           src={v.src}
@@ -98,13 +79,11 @@ function VideoCard({
           loop
           playsInline
           preload="metadata"
-          className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ${
-            hovered ? "opacity-100" : "opacity-0"
-          }`}
+          className="absolute inset-0 w-full h-full object-cover"
         />
 
         {/* Scrim */}
-        <div className="absolute inset-0 bg-ink/20 group-hover:bg-ink/40 transition-colors duration-500" />
+        <div className="absolute inset-0 bg-ink/10 group-hover:bg-ink/40 transition-colors duration-500" />
 
         {/* Play label — appears on hover */}
         <div className="absolute inset-0 flex items-center justify-between px-6 sm:px-8">
@@ -114,7 +93,7 @@ function VideoCard({
             </svg>
             Play
           </span>
-          <span className="font-mono text-[9px] tracking-[0.12em] uppercase text-white/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+          <span className="font-mono text-[9px] tracking-[0.12em] uppercase text-white/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
             {v.tags}
           </span>
         </div>
