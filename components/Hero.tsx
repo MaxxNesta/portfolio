@@ -29,11 +29,11 @@ export default function Hero() {
 
       // ── Responsive stroke widths ────────────────────────────────────
       gsap.set(jBarRef.current,      { attr: { height: barH, y: barY } });
-      gsap.set(jStemRef.current,     { attr: { strokeWidth: sw, y1: stemY1 } });
-      gsap.set(jHookPathRef.current, { attr: { strokeWidth: sw } });
-      gsap.set(uCurveRef.current,    { attr: { strokeWidth: sw } });
-      gsap.set(uLeftRef.current,     { attr: { strokeWidth: sw } });
-      gsap.set(uRightRef.current,    { attr: { strokeWidth: sw } });
+      gsap.set(jStemRef.current,     { attr: { "stroke-width": sw, y1: stemY1 } });
+      gsap.set(jHookPathRef.current, { attr: { "stroke-width": sw } });
+      gsap.set(uCurveRef.current,    { attr: { "stroke-width": sw } });
+      gsap.set(uLeftRef.current,     { attr: { "stroke-width": sw } });
+      gsap.set(uRightRef.current,    { attr: { "stroke-width": sw } });
 
       // ── Initial SVG states (short letters) ─────────────────────────
       gsap.set(jStemRef.current,  { attr: { y2: stemY1 + 164 } });
@@ -110,13 +110,13 @@ export default function Hero() {
           <line
             ref={jStemRef}
             x1="100" y1="74" x2="100" y2="238"
-            stroke="currentColor" strokeWidth="20" strokeLinecap="square"
+            stroke="currentColor" strokeWidth="1" strokeLinecap="square"
           />
           <g ref={jHookRef}>
             <path
               ref={jHookPathRef}
               d="M 100 0 L 100 22 C 100 82 62 96 38 84 C 16 72 14 46 30 38"
-              stroke="currentColor" strokeWidth="20" strokeLinecap="round" fill="none"
+              stroke="currentColor" strokeWidth="1" strokeLinecap="round" fill="none"
             />
           </g>
         </svg>
@@ -132,17 +132,17 @@ export default function Hero() {
           <path
             ref={uCurveRef}
             d="M 36 450 Q 36 536 120 536 Q 204 536 204 450"
-            stroke="currentColor" strokeWidth="20" strokeLinecap="round" fill="none"
+            stroke="currentColor" strokeWidth="1" strokeLinecap="round" fill="none"
           />
           <line
             ref={uLeftRef}
             x1="36" y1="450" x2="36" y2="450"
-            stroke="currentColor" strokeWidth="20" strokeLinecap="round"
+            stroke="currentColor" strokeWidth="1" strokeLinecap="round"
           />
           <line
             ref={uRightRef}
             x1="204" y1="450" x2="204" y2="450"
-            stroke="currentColor" strokeWidth="20" strokeLinecap="round"
+            stroke="currentColor" strokeWidth="1" strokeLinecap="round"
           />
         </svg>
       </div>
