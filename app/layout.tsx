@@ -3,6 +3,7 @@ import { Cormorant_Garamond, Space_Mono } from "next/font/google";
 import "./globals.css";
 import SmoothScroll from "@/components/SmoothScroll";
 import CustomCursor from "@/components/CustomCursor";
+import { Analytics } from "@vercel/analytics/next";
 
 const cormorant = Cormorant_Garamond({
   variable: "--font-cormorant",
@@ -39,6 +40,7 @@ export default function RootLayout({
           <CustomCursor />
           {children}
         </SmoothScroll>
+        <Analytics />
       </body>
     </html>
   );
