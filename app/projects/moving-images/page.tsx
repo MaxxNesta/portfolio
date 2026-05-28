@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import MovingImagesView from "@/components/MovingImagesView";
 
 export const metadata = { title: "Moving Images — Projects — Ju" };
 
@@ -21,14 +22,8 @@ export default function MovingImagesPage() {
             </Link>
           </div>
 
-          <div className="flex flex-col items-center justify-center h-[50dvh] border border-line gap-5">
-            <p className="font-serif font-light italic text-[clamp(28px,5vw,64px)] text-muted leading-tight text-center">
-              Coming soon
-            </p>
-            <p className="font-mono text-[9px] tracking-[0.18em] uppercase text-muted/50">
-              Videos & animations
-            </p>
-          </div>
+          <MovingImagesView />
+
         </section>
       </main>
       <Footer />
