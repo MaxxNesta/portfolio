@@ -38,10 +38,8 @@ export default function Navbar() {
               href={href}
               className="group relative font-mono text-[13px] tracking-wider text-ink cursor-none"
             >
-              <span className="opacity-50">[</span>
               {label}
-              <span className="opacity-50">]</span>
-              <span className="absolute -bottom-0.5 left-[15px] w-0 h-px bg-ink group-hover:w-[calc(100%-30px)] transition-all duration-300 ease-out" />
+              <span className="absolute -bottom-0.5 left-0 w-0 h-px bg-ink group-hover:w-full transition-all duration-300 ease-out" />
             </Link>
           ))}
         </nav>
