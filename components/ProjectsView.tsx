@@ -26,7 +26,7 @@ export default function ProjectsView() {
       >
         {/* Ghost number */}
         <span
-          className="absolute left-0 top-[-8%] font-serif font-light leading-[0.8] text-ink/[0.13] select-none pointer-events-none"
+          className="absolute left-0 top-[-8%] font-mono leading-[0.85] text-ink/[0.13] select-none pointer-events-none"
           style={{ fontSize: "clamp(280px, 65dvh, 900px)" }}
           aria-hidden="true"
         >
@@ -36,7 +36,7 @@ export default function ProjectsView() {
         <p className="font-mono text-[9px] tracking-[0.18em] uppercase text-muted relative z-10">01</p>
 
         <div className="relative z-10">
-          <p className="font-serif font-light italic leading-[1.0] text-[clamp(36px,6vw,90px)] text-ink mb-3">
+          <p className="font-mono leading-[1.0] text-[clamp(36px,6vw,90px)] text-ink mb-3">
             Images
           </p>
           <p className="font-mono text-[9px] tracking-[0.12em] uppercase text-muted mb-6">
@@ -59,7 +59,7 @@ export default function ProjectsView() {
       >
         {/* Ghost number */}
         <span
-          className="absolute left-0 top-[-8%] font-serif font-light leading-[0.8] text-bg/[0.13] select-none pointer-events-none"
+          className="absolute left-0 top-[-8%] font-mono leading-[0.85] text-bg/[0.13] select-none pointer-events-none"
           style={{ fontSize: "clamp(280px, 65dvh, 900px)" }}
           aria-hidden="true"
         >
@@ -69,7 +69,7 @@ export default function ProjectsView() {
         <p className="font-mono text-[9px] tracking-[0.18em] uppercase text-bg/40 relative z-10">02</p>
 
         <div className="relative z-10">
-          <p className="font-serif font-light italic leading-[1.0] text-[clamp(36px,6vw,90px)] text-bg mb-3">
+          <p className="font-mono leading-[1.0] text-[clamp(36px,6vw,90px)] text-bg mb-3">
             Moving<br />Images
           </p>
           <p className="font-mono text-[9px] tracking-[0.12em] uppercase text-bg/40 mb-6">
