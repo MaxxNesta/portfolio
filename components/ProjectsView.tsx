@@ -26,7 +26,7 @@ export default function ProjectsView() {
       >
         {/* Ghost number */}
         <span
-          className="absolute left-0 bottom-[-8%] font-serif font-light leading-[0.8] text-ink/[0.13] select-none pointer-events-none"
+          className="absolute left-0 top-[-8%] font-serif font-light leading-[0.8] text-ink/[0.13] select-none pointer-events-none"
           style={{ fontSize: "clamp(280px, 65dvh, 900px)" }}
           aria-hidden="true"
         >
@@ -59,7 +59,7 @@ export default function ProjectsView() {
       >
         {/* Ghost number */}
         <span
-          className="absolute left-0 bottom-[-8%] font-serif font-light leading-[0.8] text-bg/[0.13] select-none pointer-events-none"
+          className="absolute left-0 top-[-8%] font-serif font-light leading-[0.8] text-bg/[0.13] select-none pointer-events-none"
           style={{ fontSize: "clamp(280px, 65dvh, 900px)" }}
           aria-hidden="true"
         >
