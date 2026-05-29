@@ -117,8 +117,8 @@ export default function ProjectsView() {
         onClick={() => router.push("/projects/moving-images")}
         className={`absolute top-0 w-full h-full flex flex-col justify-center px-8 sm:px-14 cursor-none text-left z-20 transition-all duration-700 ease-[cubic-bezier(0.76,0,0.24,1)] ${
           card2Visible
-            ? "left-40 sm:left-48 bg-[#E8E4DC]"
-            : "left-[calc(100%-4rem)] sm:left-[calc(100%-5rem)] bg-[#E8E4DC]"
+            ? "left-40 sm:left-48 bg-[#FDFCF8]"
+            : "left-[calc(100%-4rem)] sm:left-[calc(100%-5rem)] bg-[#FDFCF8]"
         }`}
       >
         <div className="relative z-10">
