@@ -99,13 +99,17 @@ export default function ProjectsView() {
         className="absolute inset-0 w-full h-full bg-bg cursor-none z-10"
       >
         <div className="absolute bottom-10 sm:bottom-14 left-8 sm:left-14 flex flex-col">
-          {/* Vertical IMAGES — reversed so I sits at the bottom */}
-          <p
-            className="font-mono leading-[1.0] text-[clamp(36px,6vw,90px)] text-ink"
-            style={{ writingMode: "vertical-rl" }}
-          >
-            SEGAMI
-          </p>
+          {/* Vertical IMAGES — flex-col-reverse stacks I at bottom, S at top, chars upright */}
+          <div className="flex flex-col-reverse leading-none">
+            {"IMAGES".split("").map((char, i) => (
+              <span
+                key={i}
+                className="font-mono text-[clamp(36px,6vw,90px)] text-ink leading-[1.05] block"
+              >
+                {char}
+              </span>
+            ))}
+          </div>
         </div>
       </button>
 
@@ -119,7 +123,7 @@ export default function ProjectsView() {
         }`}
       >
         <div className="relative z-10">
-          <p className="font-mono leading-[1.0] text-[clamp(26px,4vw,72px)] text-ink mb-3 uppercase whitespace-nowrap">
+          <p className="font-mono leading-[1.0] text-ink mb-3 uppercase whitespace-nowrap" style={{ fontSize: "clamp(24px, 11vw, 200px)" }}>
             {movingText}
           </p>
         </div>
