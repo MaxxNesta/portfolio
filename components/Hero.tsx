@@ -23,7 +23,7 @@ export default function Hero() {
     const ctx = gsap.context(() => {
       const isTouch = window.matchMedia("(hover: none)").matches;
       const sw    = 5;
-      const barH  = 5;
+      const barH  = 7;
       const barY  = 64 - barH / 2;
       const stemY1 = barY + barH;
 
