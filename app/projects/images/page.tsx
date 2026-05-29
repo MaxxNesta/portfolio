@@ -9,7 +9,7 @@ export default function ImagesPage() {
   return (
     <>
       <Navbar />
-      <main className="min-h-screen bg-bg text-ink pt-14 sm:pt-24">
+      <main className="min-h-screen bg-bg text-ink pt-14 sm:pt-16">
         <section className="px-6 sm:px-10 py-10 sm:py-12">
 
           <div className="flex items-center justify-between mb-12">

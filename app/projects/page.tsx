@@ -7,7 +7,7 @@ export default function ProjectsPage() {
   return (
     <>
       <Navbar />
-      <main className="bg-bg text-ink pt-14 sm:pt-24">
+      <main className="bg-bg text-ink pt-14 sm:pt-16">
         <ProjectsView />
       </main>
     </>

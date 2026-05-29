@@ -7,7 +7,7 @@ export default function ContactPage() {
   return (
     <>
       <Navbar />
-      <main className="min-h-screen bg-bg text-ink pt-14 sm:pt-24">
+      <main className="min-h-screen bg-bg text-ink pt-14 sm:pt-16">
         <section className="px-6 sm:px-10 py-10 sm:py-12 md:py-16 border-t border-line">
           <p className="font-mono text-[11px] tracking-[0.12em] uppercase text-muted mb-8">
             Get in touch

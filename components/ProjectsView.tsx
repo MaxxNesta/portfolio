@@ -93,7 +93,7 @@ export default function ProjectsView() {
   }, []);
 
   return (
-    <div className="relative w-full h-[calc(100dvh-3.5rem)] sm:h-[calc(100dvh-6rem)] overflow-hidden">
+    <div className="relative w-full h-[calc(100dvh-3.5rem)] sm:h-[calc(100dvh-4rem)] overflow-hidden">
 
       {/* Card 1 — Images */}
       <button
