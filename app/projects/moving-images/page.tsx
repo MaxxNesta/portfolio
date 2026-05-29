@@ -13,7 +13,7 @@ export default function MovingImagesPage() {
         <section className="px-6 sm:px-10 py-10 sm:py-12">
 
           <div className="flex items-center justify-between mb-12">
-            <p className="font-mono text-[9px] tracking-[0.18em] uppercase text-muted">02 — Moving Images</p>
+            <p className="font-mono text-[9px] tracking-[0.18em] uppercase text-muted">Moving Images</p>
             <Link
               href="/projects"
               className="font-mono text-[9px] tracking-[0.18em] uppercase text-muted hover:text-ink transition-colors duration-200 cursor-none"
