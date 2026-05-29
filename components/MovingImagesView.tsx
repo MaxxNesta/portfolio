@@ -133,7 +133,6 @@ function AlternatingSection({
   index: number;
   onOpen: (v: VideoWork) => void;
 }) {
-  const { videoRef, handleLoadedMetadata } = useAutoplay();
   const { ref: revealRef, visible } = useScrollReveal();
   const videoLeft = index % 2 === 0;
 
@@ -144,25 +143,20 @@ function AlternatingSection({
         visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
       }`}
     >
-      {/* Video */}
+      {/* Placeholder card */}
       <button
-        onClick={() => { videoRef.current?.pause(); onOpen(v); }}
+        onClick={() => onOpen(v)}
         data-cursor="media"
         className={`group relative w-full sm:w-[58%] flex-none aspect-video overflow-hidden rounded-xl bg-ink cursor-none ${
           !videoLeft ? "sm:order-2" : ""
         }`}
       >
-        <video
-          ref={videoRef}
-          src={v.src}
-          muted
-          loop
-          playsInline
-          preload="metadata"
-          onLoadedMetadata={handleLoadedMetadata}
-          className="absolute inset-0 w-full h-full object-cover"
-        />
-        <div className="absolute inset-0 bg-ink/10 group-hover:bg-ink/35 transition-colors duration-500" />
+        <div className="absolute inset-0 bg-ink/80 group-hover:bg-ink/60 transition-colors duration-500" />
+        <div className="absolute inset-0 flex items-center justify-center">
+          <svg width="20" height="24" viewBox="0 0 12 16" fill="white" opacity={0.3} aria-hidden="true">
+            <path d="M0 0L12 8L0 16V0Z" />
+          </svg>
+        </div>
       </button>
 
       {/* Text */}
