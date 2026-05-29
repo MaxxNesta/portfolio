@@ -98,7 +98,7 @@ export default function ProjectsView() {
         onClick={() => router.push("/projects/images")}
         className="absolute inset-0 w-full h-full bg-bg cursor-none z-10"
       >
-        <div className="absolute bottom-10 sm:bottom-14 left-8 sm:left-14 flex flex-col">
+        <div className="absolute bottom-10 sm:bottom-14 left-3 sm:left-5 flex flex-col">
           {/* Vertical IMAGES — flex-col-reverse stacks I at bottom, S at top, chars upright */}
           <div className="flex flex-col-reverse leading-none">
             {"IMAGES".split("").map((char, i) => (
@@ -118,7 +118,7 @@ export default function ProjectsView() {
         onClick={() => router.push("/projects/moving-images")}
         className={`absolute top-0 w-full h-full flex flex-col justify-end px-8 sm:px-14 py-10 sm:py-14 cursor-none text-left z-20 transition-all duration-700 ease-[cubic-bezier(0.76,0,0.24,1)] ${
           card2Visible
-            ? "left-16 sm:left-20 bg-[#E8E4DC]"
+            ? "left-20 sm:left-24 bg-[#E8E4DC]"
             : "left-[calc(100%-4rem)] sm:left-[calc(100%-5rem)] bg-[#E8E4DC]"
         }`}
       >
