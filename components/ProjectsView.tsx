@@ -116,7 +116,7 @@ export default function ProjectsView() {
       {/* Card 2 — Moving Images */}
       <button
         onClick={() => router.push("/projects/moving-images")}
-        className={`absolute top-0 w-full h-full flex flex-col justify-end px-8 sm:px-14 py-10 sm:py-14 cursor-none text-left z-20 transition-all duration-700 ease-[cubic-bezier(0.76,0,0.24,1)] ${
+        className={`absolute top-0 w-full h-full flex flex-col justify-center px-8 sm:px-14 cursor-none text-left z-20 transition-all duration-700 ease-[cubic-bezier(0.76,0,0.24,1)] ${
           card2Visible
             ? "left-20 sm:left-24 bg-[#E8E4DC]"
             : "left-[calc(100%-4rem)] sm:left-[calc(100%-5rem)] bg-[#E8E4DC]"
