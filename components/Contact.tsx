@@ -41,9 +41,7 @@ export default function Contact() {
       </p>
 
       <h2 className="contact-animate font-serif font-light text-[clamp(48px,8vw,130px)] leading-[0.93] tracking-[-0.02em] mb-16 opacity-0">
-        Like what
-        <br />
-        you <em>see?</em>
+        Ju
       </h2>
 
       <a
