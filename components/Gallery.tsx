@@ -66,8 +66,8 @@ export default function Gallery() {
               data-cursor="media"
               className={`relative overflow-hidden cursor-none ${
                 landscape
-                  ? "w-[76vw] sm:w-[52vw] md:w-[38vw] lg:w-[32vw] h-[48dvh]"
-                  : "w-[46vw] sm:w-[28vw] md:w-[20vw] lg:w-[17vw] h-[72dvh]"
+                  ? "w-[76vw] sm:w-[52vw] md:w-[38vw] lg:w-[32vw] aspect-[3/2]"
+                  : "w-[46vw] sm:w-[28vw] md:w-[20vw] lg:w-[17vw] aspect-[2/3]"
               }`}
             >
               {/* eslint-disable-next-line @next/next/no-img-element */}
