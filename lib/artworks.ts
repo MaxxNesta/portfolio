@@ -16,12 +16,12 @@ export const artworks: Artwork[] = [
   {
     id: "01",
     slug: "bloom",
-    name: "Bloom",
-    tags: "Editorial styling & Lookbook",
+    name: "SISBURMA",
+    tags: "SUMMER CAMPAIGN",
     year: "2025",
     description:
       "A spring collection editorial exploring femininity through soft textures, botanical motifs, and fluid silhouettes shot entirely in natural light.",
-    cover:   `${UNS}1515886657613-9f3515b0c78f${q}&w=900`,
+    cover:   "/1.webp",
     images: [
       `${UNS}1469334031218-e382a71b716b${q}&w=600`,
       `${UNS}1483985988355-763728e1935b${q}&w=600`,

@@ -64,40 +64,19 @@ export default function Gallery() {
           <div key={work.id} className="flex flex-col flex-none">
             <div
               data-cursor="media"
-              className={`group relative overflow-hidden cursor-none ${
+              className={`relative overflow-hidden cursor-none ${
                 landscape
                   ? "w-[76vw] sm:w-[52vw] md:w-[38vw] lg:w-[32vw] h-[48dvh]"
                   : "w-[46vw] sm:w-[28vw] md:w-[20vw] lg:w-[17vw] h-[72dvh]"
               }`}
             >
-              {/* Cover image — always visible, subtle zoom on hover */}
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src={work.cover}
                 alt={work.name}
-                className="absolute inset-0 w-full h-full object-cover scale-100 group-hover:scale-105 transition-transform duration-700 ease-out"
+                className="absolute inset-0 w-full h-full object-cover"
                 loading="lazy"
               />
-
-              {/* Dark scrim + description — fades in on hover */}
-              <div className="absolute inset-0 bg-ink/60 opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10" />
-
-              <div className="absolute inset-0 px-5 sm:px-6 py-6 flex flex-col justify-between z-20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 ease-out">
-                <p className="font-mono text-[9px] sm:text-[10px] tracking-widest text-white/50 uppercase">
-                  {work.id} — {work.tags}
-                </p>
-                <div>
-                  <h3
-                    className="font-serif font-light italic text-white leading-[1.1] mb-4"
-                    style={{ fontSize: "clamp(26px, 2.8vw, 38px)" }}
-                  >
-                    {work.name}
-                  </h3>
-                  <p className="font-mono text-[10px] sm:text-[11px] leading-[1.8] text-white/70 max-w-[95%]">
-                    {work.description}
-                  </p>
-                </div>
-              </div>
             </div>
 
             {/* Label below photo */}
