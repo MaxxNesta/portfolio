@@ -46,7 +46,7 @@ a, button, input, textarea, select, label, [role="button"] {
   height: 24px;
   margin-top: -12px;
   margin-left: -12px;
-  color: #1A1A1A;
+  color: #ffffff;
   pointer-events: none;
   z-index: 9999;
   mix-blend-mode: difference;
