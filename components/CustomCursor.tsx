@@ -4,13 +4,15 @@ import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 
 // Puffy 5-pointed star: cubic bezier arms, outer R=11, inner r=5
-// Each arm: from inner point, both control points at outer tip, to next inner point
 const PUFFY =
   "M-2.94,-4.05 C0,-11 0,-11 2.94,-4.05 " +
   "C10.46,-3.4 10.46,-3.4 4.76,1.55 " +
   "C6.47,8.9 6.47,8.9 0,5 " +
   "C-6.47,8.9 -6.47,8.9 -4.76,1.55 " +
   "C-10.46,-3.4 -10.46,-3.4 -2.94,-4.05 Z";
+
+// Flat 5-pointed star: straight lines, outer R=11, inner r=4.5
+const FLAT = "M0,-11 L2.65,-3.64 L10.46,-3.4 L4.28,1.39 L6.47,8.9 L0,4.5 L-6.47,8.9 L-4.28,1.39 L-10.46,-3.4 L-2.65,-3.64 Z";
 
 export default function CustomCursor() {
   const wrapRef   = useRef<HTMLDivElement>(null);
@@ -95,7 +97,7 @@ export default function CustomCursor() {
         <path d={PUFFY} fill="url(#starFill)" stroke="#e090b8" strokeWidth="0.4" />
       </svg>
 
-      {/* Hover on photo/video: hollow neon pink star */}
+      {/* Hover on photo/video: flat outline star, pink glow */}
       <svg
         ref={neonRef}
         viewBox="-14 -14 28 28"
@@ -104,15 +106,15 @@ export default function CustomCursor() {
         style={{ position: "absolute", top: 0, left: 0, opacity: 0 }}
       >
         <defs>
-          <filter id="neonGlow" x="-70%" y="-70%" width="240%" height="240%">
-            <feGaussianBlur stdDeviation="3" result="blur" />
+          <filter id="neonGlow" x="-60%" y="-60%" width="220%" height="220%">
+            <feGaussianBlur stdDeviation="2.5" result="blur" />
             <feMerge>
               <feMergeNode in="blur" />
               <feMergeNode in="SourceGraphic" />
             </feMerge>
           </filter>
         </defs>
-        <path d={PUFFY} fill="none" stroke="#ff79c6" strokeWidth="1.5" filter="url(#neonGlow)" />
+        <path d={FLAT} fill="none" stroke="#ff79c6" strokeWidth="1.5" filter="url(#neonGlow)" />
       </svg>
 
     </div>
