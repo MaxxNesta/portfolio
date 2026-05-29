@@ -106,35 +106,21 @@ export default function ProjectsView() {
           >
             SEGAMI
           </p>
-          <div className="mt-5">
-            <p className="font-mono text-[9px] tracking-[0.12em] uppercase text-muted mb-2">
-              Photography & Styling
-            </p>
-            <p className="font-mono text-[9px] tracking-[0.12em] uppercase text-muted/50">
-              Click to enter &nbsp;·&nbsp; Scroll ↓ to reveal 02
-            </p>
-          </div>
         </div>
       </button>
 
       {/* Card 2 — Moving Images */}
       <button
         onClick={() => router.push("/projects/moving-images")}
-        className={`absolute top-0 w-full h-full flex flex-col justify-end px-8 sm:px-14 py-10 sm:py-14 bg-ink cursor-none text-left z-20 transition-all duration-700 ease-[cubic-bezier(0.76,0,0.24,1)] ${
+        className={`absolute top-0 w-full h-full flex flex-col justify-end px-8 sm:px-14 py-10 sm:py-14 cursor-none text-left z-20 transition-all duration-700 ease-[cubic-bezier(0.76,0,0.24,1)] ${
           card2Visible
-            ? "left-16 sm:left-20"
-            : "left-[calc(100%-4rem)] sm:left-[calc(100%-5rem)]"
+            ? "left-16 sm:left-20 bg-[#E8E4DC]"
+            : "left-[calc(100%-4rem)] sm:left-[calc(100%-5rem)] bg-[#E8E4DC]"
         }`}
       >
         <div className="relative z-10">
-          <p className="font-mono leading-[1.0] text-[clamp(26px,4vw,72px)] text-bg mb-3 uppercase whitespace-nowrap">
+          <p className="font-mono leading-[1.0] text-[clamp(26px,4vw,72px)] text-ink mb-3 uppercase whitespace-nowrap">
             {movingText}
-          </p>
-          <p className="font-mono text-[9px] tracking-[0.12em] uppercase text-bg/40 mb-6">
-            Video & Animation
-          </p>
-          <p className="font-mono text-[9px] tracking-[0.12em] uppercase text-bg/30">
-            Click to enter
           </p>
         </div>
       </button>
