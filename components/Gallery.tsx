@@ -67,7 +67,7 @@ export default function Gallery() {
               className={`relative overflow-hidden cursor-none ${
                 landscape
                   ? "h-[65dvh] aspect-[3/2]"
-                  : "h-[85dvh] aspect-[2/3]"
+                  : "h-[68dvh] aspect-[2/3]"
               }`}
             >
               {/* eslint-disable-next-line @next/next/no-img-element */}
