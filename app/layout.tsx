@@ -1,9 +1,30 @@
 import type { Metadata } from "next";
-import { Cormorant_Garamond, Space_Mono } from "next/font/google";
+import { Cormorant_Garamond, Space_Mono, Montserrat, Quicksand, Roboto } from "next/font/google";
 import "./globals.css";
 import SmoothScroll from "@/components/SmoothScroll";
 import CustomCursor from "@/components/CustomCursor";
 import { Analytics } from "@vercel/analytics/next";
+
+const montserrat = Montserrat({
+  variable: "--font-montserrat",
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700"],
+  display: "swap",
+});
+
+const quicksand = Quicksand({
+  variable: "--font-quicksand",
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700"],
+  display: "swap",
+});
+
+const roboto = Roboto({
+  variable: "--font-roboto",
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "700"],
+  display: "swap",
+});
 
 const cormorant = Cormorant_Garamond({
   variable: "--font-cormorant",
@@ -33,7 +54,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${cormorant.variable} ${spaceMono.variable}`}
+      className={`${cormorant.variable} ${spaceMono.variable} ${montserrat.variable} ${quicksand.variable} ${roboto.variable}`}
     >
       <body>
         <SmoothScroll>
