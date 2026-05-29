@@ -3,7 +3,14 @@
 import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 
-const STAR = "M0,-10 L2.5,-3.4 L9.5,-3.1 L4,1.3 L5.9,8.1 L0,4.2 L-5.9,8.1 L-4,1.3 L-9.5,-3.1 L-2.5,-3.4 Z";
+// Puffy 5-pointed star: cubic bezier arms, outer R=11, inner r=5
+// Each arm: from inner point, both control points at outer tip, to next inner point
+const PUFFY =
+  "M-2.94,-4.05 C0,-11 0,-11 2.94,-4.05 " +
+  "C10.46,-3.4 10.46,-3.4 4.76,1.55 " +
+  "C6.47,8.9 6.47,8.9 0,5 " +
+  "C-6.47,8.9 -6.47,8.9 -4.76,1.55 " +
+  "C-10.46,-3.4 -10.46,-3.4 -2.94,-4.05 Z";
 
 export default function CustomCursor() {
   const wrapRef   = useRef<HTMLDivElement>(null);
@@ -16,7 +23,9 @@ export default function CustomCursor() {
     const neon   = neonRef.current;
     if (!wrap || !filled || !neon) return;
 
-    let revealed = false;
+    let revealed   = false;
+    let rotation   = 0;
+    let lastY      = window.scrollY;
 
     const xTo = gsap.quickTo(wrap, "x", { duration: 0.12, ease: "power2.out" });
     const yTo = gsap.quickTo(wrap, "y", { duration: 0.12, ease: "power2.out" });
@@ -30,24 +39,31 @@ export default function CustomCursor() {
       }
     };
 
+    const onScroll = () => {
+      const delta = window.scrollY - lastY;
+      lastY = window.scrollY;
+      rotation += delta * 0.5;
+      gsap.to(wrap, { rotation, duration: 0.7, ease: "power2.out" });
+    };
+
     const onOver = (e: MouseEvent) => {
-      const target = e.target as Element;
-      if (target.closest("img, video")) {
+      const t = e.target as Element;
+      if (t.closest("img, video")) {
         gsap.to(filled, { opacity: 0, duration: 0.2 });
         gsap.to(neon,   { opacity: 1, duration: 0.2 });
         gsap.to(wrap,   { scale: 1.2, duration: 0.3, ease: "power2.out" });
-      } else if (target.closest("a, button")) {
+      } else if (t.closest("a, button")) {
         gsap.to(wrap, { scale: 1.3, duration: 0.3, ease: "power2.out" });
       }
     };
 
     const onOut = (e: MouseEvent) => {
-      const target = e.target as Element;
-      if (target.closest("img, video")) {
+      const t = e.target as Element;
+      if (t.closest("img, video")) {
         gsap.to(filled, { opacity: 1, duration: 0.2 });
         gsap.to(neon,   { opacity: 0, duration: 0.2 });
         gsap.to(wrap,   { scale: 1, duration: 0.3, ease: "power2.out" });
-      } else if (target.closest("a, button")) {
+      } else if (t.closest("a, button")) {
         gsap.to(wrap, { scale: 1, duration: 0.3, ease: "power2.out" });
       }
     };
@@ -55,38 +71,40 @@ export default function CustomCursor() {
     document.addEventListener("mousemove", onMove);
     document.addEventListener("mouseover", onOver);
     document.addEventListener("mouseout", onOut);
+    window.addEventListener("scroll", onScroll, { passive: true });
 
     return () => {
       document.removeEventListener("mousemove", onMove);
       document.removeEventListener("mouseover", onOver);
       document.removeEventListener("mouseout", onOut);
+      window.removeEventListener("scroll", onScroll);
     };
   }, []);
 
   return (
     <div ref={wrapRef} className="cursor-star" aria-hidden="true">
 
-      {/* Default: filled pink star */}
-      <svg ref={filledRef} viewBox="-13 -13 26 26" width="26" height="26">
+      {/* Default: filled puffy pink star with gradient */}
+      <svg ref={filledRef} viewBox="-14 -14 28 28" width="28" height="28">
         <defs>
-          <radialGradient id="starFill" cx="38%" cy="32%" r="58%">
-            <stop offset="0%" stopColor="#ffe8f2" />
+          <radialGradient id="starFill" cx="38%" cy="32%" r="60%">
+            <stop offset="0%"   stopColor="#ffe8f2" />
             <stop offset="100%" stopColor="#f0a8c8" />
           </radialGradient>
         </defs>
-        <path d={STAR} fill="url(#starFill)" stroke="#e090b8" strokeWidth="0.5" strokeLinejoin="round" />
+        <path d={PUFFY} fill="url(#starFill)" stroke="#e090b8" strokeWidth="0.4" />
       </svg>
 
-      {/* Hover media: hollow neon pink star */}
+      {/* Hover on photo/video: hollow neon pink star */}
       <svg
         ref={neonRef}
-        viewBox="-13 -13 26 26"
-        width="26"
-        height="26"
+        viewBox="-14 -14 28 28"
+        width="28"
+        height="28"
         style={{ position: "absolute", top: 0, left: 0, opacity: 0 }}
       >
         <defs>
-          <filter id="neonGlow" x="-60%" y="-60%" width="220%" height="220%">
+          <filter id="neonGlow" x="-70%" y="-70%" width="240%" height="240%">
             <feGaussianBlur stdDeviation="3" result="blur" />
             <feMerge>
               <feMergeNode in="blur" />
@@ -94,7 +112,7 @@ export default function CustomCursor() {
             </feMerge>
           </filter>
         </defs>
-        <path d={STAR} fill="none" stroke="#ff79c6" strokeWidth="1.5" strokeLinejoin="round" filter="url(#neonGlow)" />
+        <path d={PUFFY} fill="none" stroke="#ff79c6" strokeWidth="1.5" filter="url(#neonGlow)" />
       </svg>
 
     </div>
