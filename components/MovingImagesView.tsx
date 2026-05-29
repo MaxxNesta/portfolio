@@ -207,8 +207,10 @@ export default function MovingImagesView() {
   return (
     <>
       {/* Featured first video */}
-      <div className="mb-8 sm:mb-12">
-        <FeaturedCard v={videos[0]} onOpen={open} />
+      <div className="mb-8 sm:mb-12 flex justify-center">
+        <div className="w-full sm:w-1/2">
+          <FeaturedCard v={videos[0]} onOpen={open} />
+        </div>
       </div>
 
       {/* Remaining grid */}
