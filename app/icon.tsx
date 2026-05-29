@@ -1,29 +1,14 @@
 import { ImageResponse } from "next/og";
+import { readFile } from "fs/promises";
+import { join } from "path";
 
 export const size = { width: 64, height: 64 };
 export const contentType = "image/png";
 
-async function getFont(): Promise<ArrayBuffer | null> {
-  try {
-    const css = await fetch(
-      "https://fonts.googleapis.com/css2?family=Space+Mono:wght@400&display=swap",
-      {
-        headers: {
-          "User-Agent":
-            "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; SV1)",
-        },
-      }
-    ).then((r) => r.text());
-    const url = css.match(/url\((.+?)\) format\('truetype'\)/)?.[1];
-    if (!url) return null;
-    return fetch(url).then((r) => r.arrayBuffer());
-  } catch {
-    return null;
-  }
-}
-
 export default async function Icon() {
-  const fontData = await getFont();
+  const font = await readFile(
+    join(process.cwd(), "public/fonts/SpaceMono-Regular.ttf")
+  );
 
   return new ImageResponse(
     (
@@ -39,7 +24,7 @@ export default async function Icon() {
       >
         <span
           style={{
-            fontFamily: fontData ? "Space Mono" : "monospace",
+            fontFamily: "Space Mono",
             fontSize: 26,
             color: "#1A1A1A",
             letterSpacing: "0.15em",
@@ -52,18 +37,14 @@ export default async function Icon() {
     {
       width: 64,
       height: 64,
-      ...(fontData
-        ? {
-            fonts: [
-              {
-                name: "Space Mono",
-                data: fontData,
-                style: "normal",
-                weight: 400,
-              },
-            ],
-          }
-        : {}),
+      fonts: [
+        {
+          name: "Space Mono",
+          data: font,
+          style: "normal",
+          weight: 400,
+        },
+      ],
     }
   );
 }
