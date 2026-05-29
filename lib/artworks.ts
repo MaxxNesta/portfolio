@@ -32,8 +32,8 @@ export const artworks: Artwork[] = [
   {
     id: "02",
     slug: "dusk",
-    name: "Dusk",
-    tags: "Wardrobe curation & Fashion story",
+    name: "SISBURMA",
+    tags: "SALMON RUN CAMPAIGN",
     year: "2025",
     description:
       "An evening styling project capturing the shift from day to night through layered textures, deep saturated tones, and quiet drama.",
@@ -47,8 +47,8 @@ export const artworks: Artwork[] = [
   {
     id: "03",
     slug: "thread",
-    name: "Thread",
-    tags: "Fashion illustration & Prints",
+    name: "SISBURMA",
+    tags: "SECOND SKIN CAMPAIGN",
     year: "2024",
     description:
       "A series of hand-drawn fashion illustrations celebrating tailoring craft — celebrating the constructed silhouette and the poetry of fabric.",
@@ -63,8 +63,8 @@ export const artworks: Artwork[] = [
   {
     id: "04",
     slug: "reverie",
-    name: "Reverie",
-    tags: "Mixed media artwork & Collage",
+    name: "SISBURMA",
+    tags: "HOLIDAY CAMPAIGN",
     year: "2024",
     description:
       "Experimental mixed-media collages blending vintage fashion photography with abstract painted marks, archival imagery, and unexpected juxtapositions.",
@@ -79,8 +79,8 @@ export const artworks: Artwork[] = [
   {
     id: "05",
     slug: "petal",
-    name: "Petal",
-    tags: "Art direction & Photography",
+    name: "SISBURMA",
+    tags: "SALMON RUN CAMPAIGN",
     year: "2024",
     description:
       "Art-directed photography focusing on nature-inspired styling, organic colour palettes, and the quiet relationship between body and flora.",
