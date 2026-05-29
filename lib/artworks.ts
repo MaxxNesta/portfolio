@@ -36,7 +36,7 @@ export const artworks: Artwork[] = [
     year: "2025",
     description:
       "An evening styling project capturing the shift from day to night through layered textures, deep saturated tones, and quiet drama.",
-    cover:   `${UNS}1469334031218-e382a71b716b${q}&w=900`,
+    cover:   "/2.webp",
     images: [
       `${UNS}1515886657613-9f3515b0c78f${q}&w=600`,
       `${UNS}1534528741775-53994a69daeb${q}&w=600`,
