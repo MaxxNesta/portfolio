@@ -16,7 +16,7 @@ const videos: VideoWork[] = [
     title: "Bloom",
     tags: "Fashion Film",
     year: "2025",
-    src: "https://cdn.pixabay.com/video/2023/01/11/146130-788410151_large.mp4",
+    src: "/sisburma x yangood final.mp4",
   },
   {
     id: "02",
