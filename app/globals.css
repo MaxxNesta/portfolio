@@ -64,8 +64,8 @@ a, button, input, textarea, select, label, [role="button"] {
   to   { transform: scaleY(0); transform-origin: top; }
 }
 
-/* Mobile */
-@media (max-width: 768px) {
+/* Touch devices — hide custom cursor regardless of orientation or screen size */
+@media (hover: none) {
   body {
     cursor: auto;
   }
