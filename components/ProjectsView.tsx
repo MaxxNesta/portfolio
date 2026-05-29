@@ -20,7 +20,9 @@ function scrambleWord(
         word
           .split("")
           .map((char, i) =>
-            frame / FRAMES > i / word.length
+            char === " "
+              ? " "
+              : frame / FRAMES > i / word.length
               ? char
               : CHARS[Math.floor(Math.random() * CHARS.length)]
           )
@@ -40,13 +42,11 @@ function scrambleWord(
 export default function ProjectsView() {
   const router = useRouter();
   const [card2Visible, setCard2Visible] = useState(false);
-  const [line1, setLine1] = useState("Moving");
-  const [line2, setLine2] = useState("Images");
+  const [movingText, setMovingText] = useState("MOVING IMAGES");
   const timerIds = useRef<(ReturnType<typeof setTimeout> | ReturnType<typeof setInterval>)[]>([]);
 
   const triggerScramble = () => {
-    scrambleWord("Moving", setLine1, 0, timerIds);
-    scrambleWord("Images", setLine2, 180, timerIds);
+    scrambleWord("MOVING IMAGES", setMovingText, 0, timerIds);
   };
 
   useEffect(() => {
@@ -75,13 +75,11 @@ export default function ProjectsView() {
     };
   }, []);
 
-  // Trigger scramble when card slides in
   useEffect(() => {
     if (card2Visible) triggerScramble();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [card2Visible]);
 
-  // Periodic scramble loop
   useEffect(() => {
     triggerScramble();
     const loop = setInterval(triggerScramble, 5000);
@@ -98,31 +96,28 @@ export default function ProjectsView() {
       {/* Card 1 — Images */}
       <button
         onClick={() => router.push("/projects/images")}
-        className="absolute inset-0 w-full h-full flex flex-col justify-end px-8 sm:px-14 py-10 sm:py-14 bg-bg cursor-none text-left z-10"
+        className="absolute inset-0 w-full h-full bg-bg cursor-none z-10"
       >
-        {/* Ghost number */}
-        <span
-          className="absolute left-0 top-[-8%] font-mono leading-[0.85] text-ink/[0.13] select-none pointer-events-none"
-          style={{ fontSize: "clamp(280px, 65dvh, 900px)" }}
-          aria-hidden="true"
-        >
-          1
-        </span>
-
-        <div className="relative z-10">
-          <p className="font-mono leading-[1.0] text-[clamp(36px,6vw,90px)] text-ink mb-3 uppercase">
-            Images
+        <div className="absolute bottom-10 sm:bottom-14 left-8 sm:left-14 flex flex-col">
+          {/* Vertical IMAGES — reversed so I sits at the bottom */}
+          <p
+            className="font-mono leading-[1.0] text-[clamp(36px,6vw,90px)] text-ink"
+            style={{ writingMode: "vertical-rl" }}
+          >
+            SEGAMI
           </p>
-          <p className="font-mono text-[9px] tracking-[0.12em] uppercase text-muted mb-6">
-            Photography & Styling
-          </p>
-          <p className="font-mono text-[9px] tracking-[0.12em] uppercase text-muted/50">
-            Click to enter &nbsp;·&nbsp; Scroll ↓ to reveal 02
-          </p>
+          <div className="mt-5">
+            <p className="font-mono text-[9px] tracking-[0.12em] uppercase text-muted mb-2">
+              Photography & Styling
+            </p>
+            <p className="font-mono text-[9px] tracking-[0.12em] uppercase text-muted/50">
+              Click to enter &nbsp;·&nbsp; Scroll ↓ to reveal 02
+            </p>
+          </div>
         </div>
       </button>
 
-      {/* Card 2 — Moving Images, peeks from right, scroll triggers slide */}
+      {/* Card 2 — Moving Images */}
       <button
         onClick={() => router.push("/projects/moving-images")}
         className={`absolute top-0 w-full h-full flex flex-col justify-end px-8 sm:px-14 py-10 sm:py-14 bg-ink cursor-none text-left z-20 transition-all duration-700 ease-[cubic-bezier(0.76,0,0.24,1)] ${
@@ -131,18 +126,9 @@ export default function ProjectsView() {
             : "left-[calc(100%-4rem)] sm:left-[calc(100%-5rem)]"
         }`}
       >
-        {/* Ghost number */}
-        <span
-          className="absolute left-0 top-[-8%] font-mono leading-[0.85] text-bg/[0.13] select-none pointer-events-none"
-          style={{ fontSize: "clamp(280px, 65dvh, 900px)" }}
-          aria-hidden="true"
-        >
-          2
-        </span>
-
         <div className="relative z-10">
-          <p className="font-mono leading-[1.0] text-[clamp(36px,6vw,90px)] text-bg mb-3 uppercase">
-            {line1}<br />{line2}
+          <p className="font-mono leading-[1.0] text-[clamp(26px,4vw,72px)] text-bg mb-3 uppercase whitespace-nowrap">
+            {movingText}
           </p>
           <p className="font-mono text-[9px] tracking-[0.12em] uppercase text-bg/40 mb-6">
             Video & Animation
