@@ -99,7 +99,7 @@ export default function Navbar() {
           </nav>
 
           <p className="mt-auto font-mono text-[9px] tracking-widest text-muted/50 uppercase">
-            © 2025 Ju
+            © 2026 Ju
           </p>
         </div>
       </div>
