@@ -5,8 +5,8 @@
   --color-ink: #1A1A1A;
   --color-muted: #888880;
   --color-line: #D4D4CE;
-  --font-serif: var(--font-cormorant), Georgia, serif;
-  --font-mono: var(--font-space-mono), 'Courier New', monospace;
+  --font-serif: var(--font-quicksand), Georgia, serif;
+  --font-mono: var(--font-quicksand), sans-serif;
 }
 
 @layer base {
@@ -26,7 +26,7 @@ html {
 body {
   background-color: #F5F4F0;
   color: #1A1A1A;
-  font-family: var(--font-space-mono), 'Courier New', monospace;
+  font-family: var(--font-quicksand), sans-serif;
   font-size: 13px;
   line-height: 1.6;
   overflow-x: hidden;
