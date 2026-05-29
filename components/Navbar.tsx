@@ -36,7 +36,7 @@ export default function Navbar() {
             <Link
               key={href}
               href={href}
-              className="group relative font-mono text-[13px] tracking-wider text-ink cursor-none"
+              className="group relative font-mono text-[13px] tracking-wider uppercase text-ink cursor-none"
             >
               {label}
               <span className="absolute -bottom-0.5 left-0 w-0 h-px bg-ink group-hover:w-full transition-all duration-300 ease-out" />
@@ -90,7 +90,7 @@ export default function Navbar() {
               <Link
                 key={href}
                 href={href}
-                className="font-mono text-[14px] tracking-[0.2em] uppercase text-ink"
+                className="font-mono text-[14px] tracking-[0.2em] uppercase text-ink cursor-none"
                 onClick={() => setOpen(false)}
               >
                 {label}

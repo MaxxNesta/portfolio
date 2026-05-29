@@ -110,7 +110,7 @@ export default function ProjectsView() {
         </span>
 
         <div className="relative z-10">
-          <p className="font-mono leading-[1.0] text-[clamp(36px,6vw,90px)] text-ink mb-3">
+          <p className="font-mono leading-[1.0] text-[clamp(36px,6vw,90px)] text-ink mb-3 uppercase">
             Images
           </p>
           <p className="font-mono text-[9px] tracking-[0.12em] uppercase text-muted mb-6">
@@ -141,7 +141,7 @@ export default function ProjectsView() {
         </span>
 
         <div className="relative z-10">
-          <p className="font-mono leading-[1.0] text-[clamp(36px,6vw,90px)] text-bg mb-3">
+          <p className="font-mono leading-[1.0] text-[clamp(36px,6vw,90px)] text-bg mb-3 uppercase">
             {line1}<br />{line2}
           </p>
           <p className="font-mono text-[9px] tracking-[0.12em] uppercase text-bg/40 mb-6">
