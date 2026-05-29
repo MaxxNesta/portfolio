@@ -13,7 +13,7 @@ type VideoWork = {
 const videos: VideoWork[] = [
   {
     id: "01",
-    title: "Bloom",
+    title: "YANGOODSISBURMA : THE TEA PARTY",
     tags: "Fashion Film",
     year: "2025",
     src: "/sisburma x yangood final.mp4",
@@ -111,23 +111,10 @@ function FeaturedCard({ v, onOpen }: { v: VideoWork; onOpen: (v: VideoWork) => v
       {/* Scrim */}
       <div className="absolute inset-0 bg-ink/25 group-hover:bg-ink/40 transition-colors duration-500" />
 
-      {/* Split text */}
-      <div className="absolute inset-0 flex items-center justify-between px-8 sm:px-12">
-        <span className="flex items-center gap-3 font-mono text-[clamp(16px,2.4vw,38px)] text-white">
-          <svg width="12" height="16" viewBox="0 0 12 16" fill="currentColor" aria-hidden="true">
-            <path d="M0 0L12 8L0 16V0Z" />
-          </svg>
-          Watch
-        </span>
-        <span className="font-mono text-[clamp(16px,2.4vw,38px)] text-white">
-          the film
-        </span>
-      </div>
-
       {/* Bottom tags */}
       <div className="absolute bottom-0 w-full text-center pb-5 sm:pb-7">
         <p className="font-mono text-[9px] tracking-[0.2em] text-white/50 uppercase">
-          {v.tags} · {v.year}
+          {v.title}
         </p>
       </div>
     </button>
