@@ -91,21 +91,6 @@ export const artworks: Artwork[] = [
       "https://picsum.photos/seed/petal-sub/600/900",
     ],
   },
-  {
-    id: "06",
-    slug: "veil",
-    name: "Veil",
-    tags: "Textile & Pattern design",
-    year: "2023",
-    description:
-      "A textile exploration through sheer fabrics, layered transparencies, and delicate surface treatments applied to both garment and installation.",
-    cover:   "https://picsum.photos/seed/veil-cover/600/900",
-    images: [
-      `${UNS}1534528741775-53994a69daeb${q}&w=600`,
-      `${UNS}1483985988355-763728e1935b${q}&w=600`,
-      `${UNS}1469334031218-e382a71b716b${q}&w=600`,
-    ],
-  },
 ];
 
 export function getArtwork(slug: string): Artwork | undefined {
