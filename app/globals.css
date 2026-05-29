@@ -42,14 +42,12 @@ a, button, input, textarea, select, label, [role="button"] {
   position: fixed;
   top: 0;
   left: 0;
-  width: 24px;
-  height: 24px;
-  margin-top: -12px;
-  margin-left: -12px;
-  color: #ffffff;
+  width: 26px;
+  height: 26px;
+  margin-top: -13px;
+  margin-left: -13px;
   pointer-events: none;
   z-index: 9999;
-  mix-blend-mode: difference;
   will-change: transform;
   opacity: 0;
 }
