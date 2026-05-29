@@ -21,7 +21,7 @@ export default function Hero() {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      const isMobile = window.matchMedia("(max-width: 767px)").matches;
+      const isTouch = window.matchMedia("(hover: none)").matches;
       const sw    = 5;
       const barH  = 5;
       const barY  = 64 - barH / 2;
@@ -35,57 +35,51 @@ export default function Hero() {
       gsap.set(uLeftRef.current,     { attr: { "stroke-width": sw } });
       gsap.set(uRightRef.current,    { attr: { "stroke-width": sw } });
 
-      // ── Initial SVG states (short letters) ─────────────────────────
-      gsap.set(jStemRef.current,  { attr: { y2: stemY1 + 164 } });
-      gsap.set(jHookRef.current,  { y: stemY1 + 164 });
-      gsap.set(uLeftRef.current,  { attr: { y1: 450 } });
-      gsap.set(uRightRef.current, { attr: { y1: 450 } });
+      if (isTouch) {
+        // Touch devices: show full letters immediately, no scroll animation
+        gsap.set(jStemRef.current,  { attr: { y2: 538 } });
+        gsap.set(jHookRef.current,  { y: 538 });
+        gsap.set(jBarRef.current,   { attr: { x: 20, width: 160 } });
+        gsap.set(uLeftRef.current,  { attr: { y1: 80 } });
+        gsap.set(uRightRef.current, { attr: { y1: 80 } });
+        gsap.set(scrollHintRef.current, { display: "none" });
 
-      // ── Entry animation ─────────────────────────────────────────────
-      const intro = gsap.timeline({ defaults: { ease: "power3.out" } });
-      intro
-        .fromTo(jSvgRef.current,
-          { opacity: 0, y: 40 },
-          { opacity: 1, y: 0, duration: 1.2 })
-        .fromTo(uSvgRef.current,
-          { opacity: 0, y: 40 },
-          { opacity: 1, y: 0, duration: 1.2 }, "-=1.0")
-        .fromTo(scrollHintRef.current,
-          { opacity: 0 },
-          { opacity: 1, duration: 0.6 }, "-=0.3");
+        gsap.timeline({ defaults: { ease: "power3.out" } })
+          .fromTo(jSvgRef.current, { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 1.2 })
+          .fromTo(uSvgRef.current, { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 1.2 }, "-=1.0");
+      } else {
+        // Desktop: short letters grow on scroll
+        gsap.set(jStemRef.current,  { attr: { y2: stemY1 + 164 } });
+        gsap.set(jHookRef.current,  { y: stemY1 + 164 });
+        gsap.set(uLeftRef.current,  { attr: { y1: 450 } });
+        gsap.set(uRightRef.current, { attr: { y1: 450 } });
 
-      // ── Scroll animation ─────────────────────────────────────────────
-      const stConfig = isMobile
-        ? {
-            // Mobile: no pin (prevents shaking), section scrolls away naturally
-            trigger: sectionRef.current,
-            start: "top top",
-            end: "bottom top",
-            scrub: 1,
-          }
-        : {
-            // Desktop: full pin with long scroll distance
+        const intro = gsap.timeline({ defaults: { ease: "power3.out" } });
+        intro
+          .fromTo(jSvgRef.current, { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 1.2 })
+          .fromTo(uSvgRef.current, { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 1.2 }, "-=1.0")
+          .fromTo(scrollHintRef.current, { opacity: 0 }, { opacity: 1, duration: 0.6 }, "-=0.3");
+
+        const tl = gsap.timeline({
+          scrollTrigger: {
             trigger: sectionRef.current,
             start: "top top",
             end: "+=600%",
             pin: true,
-            pinType: "transform" as const,
+            pinType: "transform",
             scrub: 1.8,
             anticipatePin: 1,
             invalidateOnRefresh: true,
-          };
+          },
+        });
 
-      const tl = gsap.timeline({ scrollTrigger: stConfig });
-
-      tl.to(scrollHintRef.current, { opacity: 0, ease: "none", duration: 0.1 }, 0);
-      tl.to(jStemRef.current, { attr: { y2: 538 }, ease: "none" }, 0);
-      tl.to(jHookRef.current, { y: 538,            ease: "none" }, 0);
-      tl.to(jBarRef.current, {
-        attr: { x: isMobile ? 20 : 14, width: isMobile ? 160 : 172 },
-        ease: "none",
-      }, 0);
-      tl.to(uLeftRef.current,  { attr: { y1: 80 }, ease: "none" }, 0);
-      tl.to(uRightRef.current, { attr: { y1: 80 }, ease: "none" }, 0);
+        tl.to(scrollHintRef.current, { opacity: 0, ease: "none", duration: 0.1 }, 0);
+        tl.to(jStemRef.current, { attr: { y2: 538 }, ease: "none" }, 0);
+        tl.to(jHookRef.current, { y: 538,            ease: "none" }, 0);
+        tl.to(jBarRef.current,  { attr: { x: 14, width: 172 }, ease: "none" }, 0);
+        tl.to(uLeftRef.current,  { attr: { y1: 80 }, ease: "none" }, 0);
+        tl.to(uRightRef.current, { attr: { y1: 80 }, ease: "none" }, 0);
+      }
     });
 
     return () => ctx.revert();

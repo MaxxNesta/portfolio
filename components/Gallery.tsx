@@ -15,9 +15,12 @@ export default function Gallery() {
     const ctx = gsap.context(() => {
       const mm = gsap.matchMedia();
 
-      mm.add("(min-width: 768px)", () => {
+      // Only apply GSAP pinning on non-touch devices (excludes iPad/tablet)
+      mm.add("(min-width: 768px) and (hover: hover)", () => {
         const section = sectionRef.current!;
         const track   = trackRef.current!;
+
+        section.style.overflow = "hidden";
 
         gsap.to(track, {
           x: () => -(track.scrollWidth - section.offsetWidth),
@@ -33,6 +36,8 @@ export default function Gallery() {
             invalidateOnRefresh: true,
           },
         });
+
+        return () => { section.style.overflow = ""; };
       });
     });
 
@@ -43,7 +48,7 @@ export default function Gallery() {
     <section
       ref={sectionRef}
       id="gallery"
-      className="h-dvh overflow-x-auto overflow-y-hidden md:overflow-hidden"
+      className="h-dvh overflow-x-auto overflow-y-hidden"
       style={{ WebkitOverflowScrolling: "touch" } as React.CSSProperties}
     >
       <div
