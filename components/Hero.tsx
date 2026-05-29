@@ -90,7 +90,7 @@ export default function Hero() {
       ref={sectionRef}
       className="relative h-dvh flex flex-col items-center px-4 sm:px-10 pb-8"
     >
-      <div data-cursor="media" className="flex-1 flex items-center justify-center gap-4 sm:gap-16 md:gap-24 lg:gap-32 min-h-0 w-full">
+      <div className="flex-1 flex items-center justify-center gap-4 sm:gap-16 md:gap-24 lg:gap-32 min-h-0 w-full">
 
         {/* ── J ───────────────────────────────────────────────────────── */}
         <svg

@@ -7,6 +7,7 @@ export type Artwork = {
   description: string;
   cover: string;
   images: string[];
+  aspect?: "portrait" | "landscape" | "square";
 };
 
 const UNS = "https://images.unsplash.com/photo-";
@@ -51,7 +52,8 @@ export const artworks: Artwork[] = [
     year: "2024",
     description:
       "A series of hand-drawn fashion illustrations celebrating tailoring craft — celebrating the constructed silhouette and the poetry of fabric.",
-    cover:   `${UNS}1483985988355-763728e1935b${q}&w=900`,
+    cover:   "/3.webp",
+    aspect:  "square",
     images: [
       `${UNS}1515886657613-9f3515b0c78f${q}&w=600`,
       `${UNS}1469334031218-e382a71b716b${q}&w=600`,

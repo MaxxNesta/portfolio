@@ -59,15 +59,15 @@ export default function Gallery() {
         <div className="flex-none w-10 sm:w-20 md:w-28" aria-hidden="true" />
 
         {artworks.map((work, index) => {
-          const landscape = index % 2 === 1;
+          const aspect = work.aspect ?? (index % 2 === 1 ? "landscape" : "portrait");
           return (
           <div key={work.id} className="flex flex-col flex-none">
             <div
               data-cursor="media"
               className={`relative overflow-hidden cursor-none ${
-                landscape
-                  ? "h-[65dvh] aspect-[3/2]"
-                  : "h-[68dvh] aspect-[2/3]"
+                aspect === "square"    ? "h-[68dvh] aspect-square" :
+                aspect === "landscape" ? "h-[65dvh] aspect-[3/2]"  :
+                                         "h-[68dvh] aspect-[2/3]"
               }`}
             >
               {/* eslint-disable-next-line @next/next/no-img-element */}
