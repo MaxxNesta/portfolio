@@ -27,6 +27,7 @@ export default function ImagesPage() {
               <div key={work.id} className="flex flex-col">
                 <Link
                   href={`/works/${work.slug}`}
+                  data-cursor="media"
                   className="group relative overflow-hidden bg-ink cursor-none"
                   style={{ aspectRatio: "2/3" }}
                 >

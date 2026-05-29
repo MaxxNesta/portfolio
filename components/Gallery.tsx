@@ -63,6 +63,7 @@ export default function Gallery() {
           return (
           <div key={work.id} className="flex flex-col flex-none">
             <div
+              data-cursor="media"
               className={`group relative overflow-hidden cursor-none ${
                 landscape
                   ? "w-[76vw] sm:w-[52vw] md:w-[38vw] lg:w-[32vw] h-[48dvh]"

@@ -95,6 +95,7 @@ function FeaturedCard({ v, onOpen }: { v: VideoWork; onOpen: (v: VideoWork) => v
   return (
     <button
       onClick={() => { videoRef.current?.pause(); onOpen(v); }}
+      data-cursor="media"
       className="group relative w-full aspect-video overflow-hidden rounded-2xl bg-ink cursor-none text-left"
     >
       <video
@@ -146,6 +147,7 @@ function AlternatingSection({
       {/* Video */}
       <button
         onClick={() => { videoRef.current?.pause(); onOpen(v); }}
+        data-cursor="media"
         className={`group relative w-full sm:w-[58%] flex-none aspect-video overflow-hidden rounded-xl bg-ink cursor-none ${
           !videoLeft ? "sm:order-2" : ""
         }`}

@@ -50,7 +50,7 @@ export default function CustomCursor() {
 
     const onOver = (e: MouseEvent) => {
       const t = e.target as Element;
-      if (t.closest("img, video")) {
+      if (t.closest('[data-cursor="media"], img, video')) {
         gsap.to(filled, { opacity: 0, duration: 0.2 });
         gsap.to(neon,   { opacity: 1, duration: 0.2 });
         gsap.to(wrap,   { scale: 1.2, duration: 0.3, ease: "power2.out" });
@@ -61,7 +61,7 @@ export default function CustomCursor() {
 
     const onOut = (e: MouseEvent) => {
       const t = e.target as Element;
-      if (t.closest("img, video")) {
+      if (t.closest('[data-cursor="media"], img, video')) {
         gsap.to(filled, { opacity: 1, duration: 0.2 });
         gsap.to(neon,   { opacity: 0, duration: 0.2 });
         gsap.to(wrap,   { scale: 1, duration: 0.3, ease: "power2.out" });
