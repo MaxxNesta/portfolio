@@ -23,6 +23,7 @@ export const artworks: Artwork[] = [
     description:
       "A spring collection editorial exploring femininity through soft textures, botanical motifs, and fluid silhouettes shot entirely in natural light.",
     cover:   "/1.webp",
+    aspect:  "portrait",
     images: [
       `${UNS}1469334031218-e382a71b716b${q}&w=600`,
       `${UNS}1483985988355-763728e1935b${q}&w=600`,
@@ -38,6 +39,7 @@ export const artworks: Artwork[] = [
     description:
       "An evening styling project capturing the shift from day to night through layered textures, deep saturated tones, and quiet drama.",
     cover:   "/2.webp",
+    aspect:  "landscape",
     images: [
       `${UNS}1515886657613-9f3515b0c78f${q}&w=600`,
       `${UNS}1534528741775-53994a69daeb${q}&w=600`,
@@ -68,8 +70,8 @@ export const artworks: Artwork[] = [
     year: "2024",
     description:
       "Experimental mixed-media collages blending vintage fashion photography with abstract painted marks, archival imagery, and unexpected juxtapositions.",
-    // picsum: reliable placeholder; swap for your own photo
     cover:   "/4.webp",
+    aspect:  "landscape",
     images: [
       "https://picsum.photos/seed/reverie-a/600/900",
       `${UNS}1483985988355-763728e1935b${q}&w=600`,
@@ -85,6 +87,7 @@ export const artworks: Artwork[] = [
     description:
       "Art-directed photography focusing on nature-inspired styling, organic colour palettes, and the quiet relationship between body and flora.",
     cover:   "/5.webp",
+    aspect:  "portrait",
     images: [
       `${UNS}1469334031218-e382a71b716b${q}&w=600`,
       `${UNS}1515886657613-9f3515b0c78f${q}&w=600`,
