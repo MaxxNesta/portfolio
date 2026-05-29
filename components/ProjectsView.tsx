@@ -98,9 +98,8 @@ export default function ProjectsView() {
         onClick={() => router.push("/projects/images")}
         className="absolute inset-0 w-full h-full bg-bg cursor-none z-10"
       >
-        <div className="absolute bottom-10 sm:bottom-14 left-3 sm:left-5 flex flex-col">
-          {/* Vertical IMAGES — flex-col-reverse stacks I at bottom, S at top, chars upright */}
-          <div className="flex flex-col-reverse leading-none">
+        <div className="absolute top-10 sm:top-14 left-3 sm:left-5 flex flex-col">
+          <div className="flex flex-col leading-none">
             {"IMAGES".split("").map((char, i) => (
               <span
                 key={i}
