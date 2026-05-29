@@ -15,8 +15,7 @@ export default function Gallery() {
     const ctx = gsap.context(() => {
       const mm = gsap.matchMedia();
 
-      // Only apply GSAP pinning on non-touch devices (excludes iPad/tablet)
-      mm.add("(min-width: 768px) and (hover: hover)", () => {
+      mm.add("(min-width: 768px)", () => {
         const section = sectionRef.current!;
         const track   = trackRef.current!;
 
