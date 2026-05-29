@@ -90,7 +90,7 @@ function FeaturedCard({ v, onOpen }: { v: VideoWork; onOpen: (v: VideoWork) => v
       onMouseEnter={handleEnter}
       onMouseLeave={handleLeave}
       onClick={handleClick}
-      className="group relative w-full aspect-video overflow-hidden rounded-2xl bg-ink cursor-none text-left"
+      className="group relative w-full aspect-[4/3] overflow-hidden rounded-2xl bg-ink cursor-none text-left"
     >
       <video
         ref={videoRef}
@@ -206,9 +206,9 @@ export default function MovingImagesView() {
 
   return (
     <>
-      {/* Featured first video */}
-      <div className="mb-8 sm:mb-12 flex justify-center">
-        <div className="w-full sm:w-1/2">
+      {/* Featured first video — min-height pushes grid below the fold */}
+      <div className="flex justify-center items-start min-h-[calc(100dvh-12rem)] mb-8 sm:mb-16">
+        <div className="w-full sm:w-[60%]">
           <FeaturedCard v={videos[0]} onOpen={open} />
         </div>
       </div>
