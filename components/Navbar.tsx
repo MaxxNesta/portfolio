@@ -36,7 +36,7 @@ export default function Navbar() {
             <Link
               key={href}
               href={href}
-              className="group relative font-[family-name:var(--font-quicksand)] text-[15px] tracking-wider uppercase text-ink cursor-none"
+              className="group relative font-[family-name:var(--font-quicksand)] text-[14px] tracking-wider uppercase text-ink cursor-none"
             >
               {label}
               <span className="absolute -bottom-0.5 left-0 w-0 h-px bg-ink group-hover:w-full transition-all duration-300 ease-out" />
