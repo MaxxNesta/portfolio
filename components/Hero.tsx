@@ -51,8 +51,8 @@ export default function Hero() {
         // Desktop: short letters grow on scroll
         gsap.set(jStemRef.current,  { attr: { y2: stemY1 + 164 } });
         gsap.set(jHookRef.current,  { y: stemY1 + 164 });
-        gsap.set(uLeftRef.current,  { attr: { y1: 450 } });
-        gsap.set(uRightRef.current, { attr: { y1: 450 } });
+        gsap.set(uLeftRef.current,  { attr: { y1: 538 } });
+        gsap.set(uRightRef.current, { attr: { y1: 538 } });
 
         const intro = gsap.timeline({ defaults: { ease: "power3.out" } });
         intro
@@ -125,17 +125,17 @@ export default function Hero() {
         >
           <path
             ref={uCurveRef}
-            d="M 36 450 Q 36 536 120 536 Q 204 536 204 450"
+            d="M 36 538 Q 36 624 120 624 Q 204 624 204 538"
             stroke="currentColor" strokeWidth="1" strokeLinecap="round" fill="none"
           />
           <line
             ref={uLeftRef}
-            x1="36" y1="450" x2="36" y2="450"
+            x1="36" y1="538" x2="36" y2="538"
             stroke="currentColor" strokeWidth="1" strokeLinecap="round"
           />
           <line
             ref={uRightRef}
-            x1="204" y1="450" x2="204" y2="450"
+            x1="204" y1="538" x2="204" y2="538"
             stroke="currentColor" strokeWidth="1" strokeLinecap="round"
           />
         </svg>
