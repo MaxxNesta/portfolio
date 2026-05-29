@@ -15,7 +15,7 @@ export default function Gallery() {
     const ctx = gsap.context(() => {
       const mm = gsap.matchMedia();
 
-      mm.add("(min-width: 768px)", () => {
+      mm.add("(min-width: 768px) and (hover: hover)", () => {
         const section = sectionRef.current!;
         const track   = trackRef.current!;
 
