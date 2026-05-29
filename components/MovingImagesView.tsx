@@ -207,7 +207,7 @@ export default function MovingImagesView() {
   return (
     <>
       {/* Featured first video — min-height pushes grid below the fold */}
-      <div className="flex justify-center items-start min-h-[calc(100dvh-12rem)] mb-8 sm:mb-16">
+      <div className="flex justify-center items-center min-h-[calc(100dvh-12rem)] mb-8 sm:mb-16">
         <div className="w-full sm:w-[60%]">
           <FeaturedCard v={videos[0]} onOpen={open} />
         </div>
