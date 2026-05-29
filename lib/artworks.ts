@@ -84,7 +84,7 @@ export const artworks: Artwork[] = [
     year: "2024",
     description:
       "Art-directed photography focusing on nature-inspired styling, organic colour palettes, and the quiet relationship between body and flora.",
-    cover:   `${UNS}1534528741775-53994a69daeb${q}&w=900`,
+    cover:   "/5.webp",
     images: [
       `${UNS}1469334031218-e382a71b716b${q}&w=600`,
       `${UNS}1515886657613-9f3515b0c78f${q}&w=600`,
