@@ -25,7 +25,7 @@ export default function Navbar() {
       >
         <Link
           href="/"
-          className="font-mono text-[14px] tracking-widest uppercase text-ink hover:opacity-60 transition-opacity duration-200 cursor-none"
+          className="font-[family-name:var(--font-quicksand)] text-[14px] tracking-widest uppercase text-ink hover:opacity-60 transition-opacity duration-200 cursor-none"
         >
           Ju
         </Link>
@@ -36,7 +36,7 @@ export default function Navbar() {
             <Link
               key={href}
               href={href}
-              className="group relative font-mono text-[13px] tracking-wider uppercase text-ink cursor-none"
+              className="group relative font-[family-name:var(--font-quicksand)] text-[13px] tracking-wider uppercase text-ink cursor-none"
             >
               {label}
               <span className="absolute -bottom-0.5 left-0 w-0 h-px bg-ink group-hover:w-full transition-all duration-300 ease-out" />
@@ -78,7 +78,7 @@ export default function Navbar() {
         >
           {/* Close button */}
           <button
-            className="self-end font-mono text-[18px] text-muted leading-none mb-14 cursor-pointer"
+            className="self-end font-[family-name:var(--font-quicksand)] text-[18px] text-muted leading-none mb-14 cursor-pointer"
             onClick={() => setOpen(false)}
             aria-label="Close menu"
           >
@@ -90,7 +90,7 @@ export default function Navbar() {
               <Link
                 key={href}
                 href={href}
-                className="font-mono text-[14px] tracking-[0.2em] uppercase text-ink cursor-none"
+                className="font-[family-name:var(--font-quicksand)] text-[14px] tracking-[0.2em] uppercase text-ink cursor-none"
                 onClick={() => setOpen(false)}
               >
                 {label}
@@ -98,7 +98,7 @@ export default function Navbar() {
             ))}
           </nav>
 
-          <p className="mt-auto font-mono text-[9px] tracking-widest text-muted/50 uppercase">
+          <p className="mt-auto font-[family-name:var(--font-quicksand)] text-[9px] tracking-widest text-muted/50 uppercase">
             © 2026 Ju
           </p>
         </div>
