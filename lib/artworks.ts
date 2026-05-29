@@ -69,7 +69,7 @@ export const artworks: Artwork[] = [
     description:
       "Experimental mixed-media collages blending vintage fashion photography with abstract painted marks, archival imagery, and unexpected juxtapositions.",
     // picsum: reliable placeholder; swap for your own photo
-    cover:   "https://picsum.photos/seed/reverie-cover/600/900",
+    cover:   "/4.webp",
     images: [
       "https://picsum.photos/seed/reverie-a/600/900",
       `${UNS}1483985988355-763728e1935b${q}&w=600`,
