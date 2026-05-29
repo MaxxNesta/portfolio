@@ -123,7 +123,7 @@ export default function ProjectsView() {
         }`}
       >
         <div className="relative z-10">
-          <p className="font-mono leading-[1.0] text-ink mb-3 uppercase whitespace-nowrap" style={{ fontSize: "clamp(24px, 11vw, 200px)" }}>
+          <p className="font-mono leading-[1.0] text-ink mb-3 uppercase sm:whitespace-nowrap" style={{ fontSize: "clamp(20px, 11vw, 200px)" }}>
             {movingText}
           </p>
         </div>
