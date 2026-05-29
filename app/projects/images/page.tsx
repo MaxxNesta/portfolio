@@ -62,7 +62,7 @@ export default function ImagesPage() {
           </div>
 
           {/* Row 2 — Photo 2 landscape left, Photo 5 portrait right */}
-          <div className="flex items-start gap-5 sm:gap-8 mb-20 sm:mb-28">
+          <div className="flex items-center gap-5 sm:gap-8 mb-20 sm:mb-28">
             <div className="flex-[3]">
               <Card work={a2} />
             </div>
