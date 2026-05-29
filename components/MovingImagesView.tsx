@@ -41,56 +41,61 @@ const videos: VideoWork[] = [
   },
 ];
 
-// ─── Shared hook: seek to first frame + mobile intersection autoplay ─────────
+// ─── Viewport autoplay hook ───────────────────────────────────────────────────
 
-function useVideoCard(onOpen: (v: VideoWork) => void, v: VideoWork) {
+function useAutoplay() {
   const videoRef = useRef<HTMLVideoElement>(null);
 
   const handleLoadedMetadata = () => {
     if (videoRef.current) videoRef.current.currentTime = 0.01;
   };
-  const handleEnter = () => videoRef.current?.play().catch(() => {});
-  const handleLeave = () => {
-    if (videoRef.current) {
-      videoRef.current.pause();
-      videoRef.current.currentTime = 0;
-    }
-  };
-  const handleClick = () => {
-    videoRef.current?.pause();
-    onOpen(v);
-  };
 
   useEffect(() => {
     const video = videoRef.current;
     if (!video) return;
-    if (!window.matchMedia("(hover: none)").matches) return;
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) video.play().catch(() => {});
         else { video.pause(); video.currentTime = 0; }
       },
-      { threshold: 0.6 }
+      { threshold: 0.3 }
     );
     observer.observe(video);
     return () => observer.disconnect();
   }, []);
 
-  return { videoRef, handleLoadedMetadata, handleEnter, handleLeave, handleClick };
+  return { videoRef, handleLoadedMetadata };
 }
 
-// ─── Featured card (first video) ─────────────────────────────────────────────
+// ─── Scroll-reveal hook ───────────────────────────────────────────────────────
+
+function useScrollReveal() {
+  const ref = useRef<HTMLDivElement>(null);
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => { if (entry.isIntersecting) setVisible(true); },
+      { threshold: 0.15 }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
+  return { ref, visible };
+}
+
+// ─── Featured card ────────────────────────────────────────────────────────────
 
 function FeaturedCard({ v, onOpen }: { v: VideoWork; onOpen: (v: VideoWork) => void }) {
-  const { videoRef, handleLoadedMetadata, handleEnter, handleLeave, handleClick } =
-    useVideoCard(onOpen, v);
+  const { videoRef, handleLoadedMetadata } = useAutoplay();
 
   return (
     <button
-      onMouseEnter={handleEnter}
-      onMouseLeave={handleLeave}
-      onClick={handleClick}
-      className="group relative w-full aspect-[4/3] overflow-hidden rounded-2xl bg-ink cursor-none text-left"
+      onClick={() => { videoRef.current?.pause(); onOpen(v); }}
+      className="group relative w-full aspect-video overflow-hidden rounded-2xl bg-ink cursor-none text-left"
     >
       <video
         ref={videoRef}
@@ -103,23 +108,23 @@ function FeaturedCard({ v, onOpen }: { v: VideoWork; onOpen: (v: VideoWork) => v
         className="absolute inset-0 w-full h-full object-cover"
       />
 
-      {/* Persistent scrim for text legibility */}
-      <div className="absolute inset-0 bg-ink/30 group-hover:bg-ink/45 transition-colors duration-500" />
+      {/* Scrim */}
+      <div className="absolute inset-0 bg-ink/25 group-hover:bg-ink/40 transition-colors duration-500" />
 
-      {/* Split text overlay — always visible */}
+      {/* Split text */}
       <div className="absolute inset-0 flex items-center justify-between px-8 sm:px-12">
-        <span className="flex items-center gap-3 font-mono text-[clamp(18px,2.8vw,44px)] text-white">
-          <svg width="14" height="18" viewBox="0 0 14 18" fill="currentColor" aria-hidden="true">
-            <path d="M0 0L14 9L0 18V0Z" />
+        <span className="flex items-center gap-3 font-mono text-[clamp(16px,2.4vw,38px)] text-white">
+          <svg width="12" height="16" viewBox="0 0 12 16" fill="currentColor" aria-hidden="true">
+            <path d="M0 0L12 8L0 16V0Z" />
           </svg>
           Watch
         </span>
-        <span className="font-mono text-[clamp(18px,2.8vw,44px)] text-white">
+        <span className="font-mono text-[clamp(16px,2.4vw,38px)] text-white">
           the film
         </span>
       </div>
 
-      {/* Bottom featuring line */}
+      {/* Bottom tags */}
       <div className="absolute bottom-0 w-full text-center pb-5 sm:pb-7">
         <p className="font-mono text-[9px] tracking-[0.2em] text-white/50 uppercase">
           {v.tags} · {v.year}
@@ -129,19 +134,34 @@ function FeaturedCard({ v, onOpen }: { v: VideoWork; onOpen: (v: VideoWork) => v
   );
 }
 
-// ─── Grid card ───────────────────────────────────────────────────────────────
+// ─── Alternating section ──────────────────────────────────────────────────────
 
-function VideoCard({ v, onOpen }: { v: VideoWork; onOpen: (v: VideoWork) => void }) {
-  const { videoRef, handleLoadedMetadata, handleEnter, handleLeave, handleClick } =
-    useVideoCard(onOpen, v);
+function AlternatingSection({
+  v,
+  index,
+  onOpen,
+}: {
+  v: VideoWork;
+  index: number;
+  onOpen: (v: VideoWork) => void;
+}) {
+  const { videoRef, handleLoadedMetadata } = useAutoplay();
+  const { ref: revealRef, visible } = useScrollReveal();
+  const videoLeft = index % 2 === 0;
 
   return (
-    <div className="flex flex-col">
+    <div
+      ref={revealRef}
+      className={`flex flex-col sm:flex-row items-center gap-8 sm:gap-14 transition-all duration-700 ease-out ${
+        visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
+      }`}
+    >
+      {/* Video */}
       <button
-        onMouseEnter={handleEnter}
-        onMouseLeave={handleLeave}
-        onClick={handleClick}
-        className="group relative w-full aspect-video overflow-hidden bg-ink cursor-none text-left"
+        onClick={() => { videoRef.current?.pause(); onOpen(v); }}
+        className={`group relative w-full sm:w-[58%] flex-none aspect-video overflow-hidden rounded-xl bg-ink cursor-none ${
+          !videoLeft ? "sm:order-2" : ""
+        }`}
       >
         <video
           ref={videoRef}
@@ -153,33 +173,32 @@ function VideoCard({ v, onOpen }: { v: VideoWork; onOpen: (v: VideoWork) => void
           onLoadedMetadata={handleLoadedMetadata}
           className="absolute inset-0 w-full h-full object-cover"
         />
-        <div className="absolute inset-0 bg-ink/10 group-hover:bg-ink/40 transition-colors duration-500" />
-        <div className="absolute inset-0 flex items-center justify-between px-6 sm:px-8">
-          <span className="flex items-center gap-2.5 font-mono text-[10px] tracking-[0.18em] uppercase text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-            <svg width="9" height="11" viewBox="0 0 9 11" fill="currentColor" aria-hidden="true">
-              <path d="M0 0L9 5.5L0 11V0Z" />
-            </svg>
-            Play
-          </span>
-          <span className="font-mono text-[9px] tracking-[0.12em] uppercase text-white/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-            {v.tags}
-          </span>
-        </div>
-        <div className="absolute bottom-0 left-0 px-6 sm:px-8 pb-5">
-          <p className="font-mono text-[9px] tracking-[0.12em] uppercase text-white/30">{v.id}</p>
-        </div>
+        <div className="absolute inset-0 bg-ink/10 group-hover:bg-ink/35 transition-colors duration-500" />
       </button>
-      <div className="pt-2 sm:pt-3">
-        <p className="font-mono text-[9px] tracking-[0.12em] uppercase text-ink">{v.title}</p>
-        <p className="font-mono text-[8px] tracking-[0.1em] uppercase text-muted mt-0.5">
+
+      {/* Text */}
+      <div className={`w-full sm:flex-1 flex flex-col justify-center ${!videoLeft ? "sm:order-1" : ""}`}>
+        <p className="font-mono text-[9px] tracking-[0.18em] uppercase text-muted mb-4">
+          {v.id}
+        </p>
+        <p className="font-mono text-[clamp(28px,3.5vw,56px)] text-ink uppercase leading-[1.0] mb-5">
+          {v.title}
+        </p>
+        <p className="font-mono text-[9px] tracking-[0.12em] uppercase text-muted mb-8">
           {v.tags} · {v.year}
         </p>
+        <button
+          onClick={() => onOpen(v)}
+          className="self-start font-mono text-[9px] tracking-[0.18em] uppercase text-ink border-b border-ink pb-0.5 cursor-none hover:text-muted hover:border-muted transition-colors duration-200"
+        >
+          Watch ↗
+        </button>
       </div>
     </div>
   );
 }
 
-// ─── Main view ───────────────────────────────────────────────────────────────
+// ─── Main view ────────────────────────────────────────────────────────────────
 
 export default function MovingImagesView() {
   const [active, setActive] = useState<VideoWork | null>(null);
@@ -206,21 +225,21 @@ export default function MovingImagesView() {
 
   return (
     <>
-      {/* Featured first video — min-height pushes grid below the fold */}
-      <div className="flex justify-center items-center min-h-[calc(100dvh-12rem)] mb-8 sm:mb-16">
-        <div className="w-full sm:w-[60%]">
+      {/* Featured first video */}
+      <div className="flex justify-center items-center min-h-[calc(100dvh-12rem)] mb-20 sm:mb-28">
+        <div className="w-full sm:w-[70%]">
           <FeaturedCard v={videos[0]} onOpen={open} />
         </div>
       </div>
 
-      {/* Remaining grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-5 sm:gap-8">
-        {videos.slice(1).map((v) => (
-          <VideoCard key={v.id} v={v} onOpen={open} />
+      {/* Alternating video + text sections */}
+      <div className="flex flex-col gap-20 sm:gap-28">
+        {videos.slice(1).map((v, i) => (
+          <AlternatingSection key={v.id} v={v} index={i} onOpen={open} />
         ))}
       </div>
 
-      {/* ── Fullscreen modal ── */}
+      {/* Fullscreen modal */}
       {active && (
         <div
           className="fixed inset-0 z-50 bg-black/95 flex items-center justify-center"
