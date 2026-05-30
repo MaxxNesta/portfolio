@@ -127,11 +127,9 @@ function FeaturedCard({ v, onOpen }: { v: VideoWork; onOpen: (v: VideoWork) => v
 function AlternatingSection({
   v,
   index,
-  onOpen,
 }: {
   v: VideoWork;
   index: number;
-  onOpen: (v: VideoWork) => void;
 }) {
   const { ref: revealRef, visible } = useScrollReveal();
   const videoLeft = index % 2 === 0;
@@ -143,21 +141,20 @@ function AlternatingSection({
         visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
       }`}
     >
-      {/* Placeholder card */}
-      <button
-        onClick={() => onOpen(v)}
+      {/* Placeholder card — not clickable */}
+      <div
         data-cursor="media"
-        className={`group relative w-full sm:w-[58%] flex-none aspect-video overflow-hidden rounded-xl bg-ink cursor-none ${
+        className={`relative w-full sm:w-[58%] flex-none aspect-video overflow-hidden rounded-xl bg-ink ${
           !videoLeft ? "sm:order-2" : ""
         }`}
       >
-        <div className="absolute inset-0 bg-ink/80 group-hover:bg-ink/60 transition-colors duration-500" />
+        <div className="absolute inset-0 bg-ink/80" />
         <div className="absolute inset-0 flex items-center justify-center">
           <svg width="20" height="24" viewBox="0 0 12 16" fill="white" opacity={0.3} aria-hidden="true">
             <path d="M0 0L12 8L0 16V0Z" />
           </svg>
         </div>
-      </button>
+      </div>
 
       {/* Text */}
       <div className={`w-full sm:flex-1 flex flex-col justify-center ${!videoLeft ? "sm:order-1" : ""}`}>
@@ -170,12 +167,6 @@ function AlternatingSection({
         <p className="font-mono text-[9px] tracking-[0.12em] uppercase text-muted mb-8">
           {v.tags} · {v.year}
         </p>
-        <button
-          onClick={() => onOpen(v)}
-          className="self-start font-mono text-[9px] tracking-[0.18em] uppercase text-ink border-b border-ink pb-0.5 cursor-none hover:text-muted hover:border-muted transition-colors duration-200"
-        >
-          Watch ↗
-        </button>
       </div>
     </div>
   );
@@ -218,7 +209,7 @@ export default function MovingImagesView() {
       {/* Alternating video + text sections */}
       <div className="flex flex-col gap-20 sm:gap-28">
         {videos.slice(1).map((v, i) => (
-          <AlternatingSection key={v.id} v={v} index={i} onOpen={open} />
+          <AlternatingSection key={v.id} v={v} index={i} />
         ))}
       </div>
 
