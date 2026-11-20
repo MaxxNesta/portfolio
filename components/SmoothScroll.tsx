@@ -6,6 +6,9 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
+// Mobile address bar showing/hiding fires resize events; refreshing pins on
+// each one makes pinned sections jump. Only refresh on real resizes.
+ScrollTrigger.config({ ignoreMobileResize: true });
 
 export default function SmoothScroll({
   children,
